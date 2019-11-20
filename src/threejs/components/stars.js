@@ -9,7 +9,7 @@ export default scene => {
     CURVE_SEGMENTS
   );
   const map = textureLoader.load(
-    "http://localhost:8080/api/textures/milkyway_4k.jpg"
+    "https://skylinks.herokuapp.com/api/textures/milkyway_4k.jpg"
   );
   map.wrapS = THREE.RepeatWrapping;
   map.wrapT = THREE.RepeatWrapping;

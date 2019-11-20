@@ -14,14 +14,14 @@ export default scene => {
     CURVE_SEGMENTS
   );
   const mapTexture = textureLoader.load(
-    "http://localhost:8080/api/textures/earth.jpg"
+    "https://skylinks.herokuapp.com/api/textures/earth.jpg"
   );
   const bumbMapTexture = textureLoader.load(
-    "http://localhost:8080/api/textures/elev_bump_4k.jpg"
+    "https://skylinks.herokuapp.com/api/textures/elev_bump_4k.jpg"
   );
 
   const specularMap = textureLoader.load(
-    "http://localhost:8080/api/textures/water_4k.png"
+    "https://skylinks.herokuapp.com/api/textures/water_4k.png"
   );
 
   const material = new THREE.MeshPhongMaterial({

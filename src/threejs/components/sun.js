@@ -21,7 +21,9 @@ export default scene => {
   const sun = new THREE.Mesh(sphere, material);
 
   var spriteMaterial = new THREE.SpriteMaterial({
-    map: textureLoader.load("http://localhost:8080/api/textures/glow.png"),
+    map: textureLoader.load(
+      "https://skylinks.herokuapp.com/api/textures/glow.png"
+    ),
     color: 0xfdb813,
     transparent: false,
     blending: THREE.AdditiveBlending

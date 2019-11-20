@@ -10,7 +10,9 @@ export default points => {
 
   let geo = new THREE.PlaneBufferGeometry(0.2, 0.2, 0.1, 0.1);
   let mat = new THREE.MeshBasicMaterial({
-    map: textureLoader.load("http://localhost:8080/api/textures/plane.png"),
+    map: textureLoader.load(
+      "https://skylinks.herokuapp.com/api/textures/plane.png"
+    ),
     transparent: true
   });
   let plane = new THREE.Mesh(geo, mat);

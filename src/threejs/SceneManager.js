@@ -30,28 +30,31 @@ export default canvas => {
   let sceneRealRoute = [];
 
   function createPlane(scene) {
-    gltfLoader.load("http://localhost:8080/with-cors/scene.gltf", gltf => {
-      gltf.scene.traverse(function(child) {
-        if (child.isMesh) {
-          child.name = "airPlaneParts";
-          child.rotation.set(
-            (Math.PI / 180) * 0,
-            (Math.PI / 180) * 0,
-            (Math.PI / 180) * 0
-          );
-          child.geometry.center(); // center here
-        }
-      });
-      const root = gltf.scene;
-      root.scale.set(0.00001, 0.00001, 0.00001);
-      root.name = "real3d";
-      scene.add(root);
+    gltfLoader.load(
+      "https://skylinks.herokuapp.com/with-cors/scene.gltf",
+      gltf => {
+        gltf.scene.traverse(function(child) {
+          if (child.isMesh) {
+            child.name = "airPlaneParts";
+            child.rotation.set(
+              (Math.PI / 180) * 0,
+              (Math.PI / 180) * 0,
+              (Math.PI / 180) * 0
+            );
+            child.geometry.center(); // center here
+          }
+        });
+        const root = gltf.scene;
+        root.scale.set(0.00001, 0.00001, 0.00001);
+        root.name = "real3d";
+        scene.add(root);
 
-      return root;
+        return root;
 
-      // compute the box that contains all the stuff
-      // from root and below
-    });
+        // compute the box that contains all the stuff
+        // from root and below
+      }
+    );
   }
 
   function buildScene() {
