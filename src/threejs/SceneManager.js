@@ -126,6 +126,18 @@ export default canvas => {
       loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
       
     } );
+
+    const objectURLs = [];
+      manager.setURLModifier( ( url ) => {
+
+        url = URL.createObjectURL( blobs[ url ] );
+
+        objectURLs.push( url );
+
+        return url;
+
+    } );
+
     return sceneSubjects;
   }
 
