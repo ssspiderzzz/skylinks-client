@@ -113,9 +113,6 @@ const App = props => {
           />
         ) : null}
       </div>
-      <section id="loading-screen">
-        <div id="loader"/>
-      </section>
       <ThreeContainer
         waypoints={waypoints}
         realFlightPosition={realFlightPosition}

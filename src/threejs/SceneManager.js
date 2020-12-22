@@ -23,7 +23,8 @@ export default canvas => {
   const renderer = buildRender(screenDimensions);
   const camera = buildCamera(screenDimensions);
   const controls = buildControls(camera);
-  const sceneSubjects = createSceneSubjects(scene);
+  const loadingManager = buildLoadingManager()
+  const sceneSubjects = createSceneSubjects(scene, loadingManager);
   createPlane(scene);
   let airPlaneRoot = "";
   let sceneRoutes = [];
@@ -109,34 +110,28 @@ export default canvas => {
     return camera;
   }
 
-  function createSceneSubjects(scene) {
+  function buildLoadingManager() {
+    let manager = new THREE.LoadingManager();
+    manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+      console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+    };
+    manager.onLoad = function ( ) {
+      console.log( 'Loading complete!');
+    };
+    manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+      console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+    };
+    return manager
+  }
+
+  function createSceneSubjects(scene, loadingManager) {
     const sceneSubjects = [
-      new Earth(scene),
-      new Clouds(scene),
-      new Sun(scene),
-      new GeneralLights(scene),
-      new StarsBackGround(scene)
+      new Earth(scene, loadingManager),
+      new Clouds(scene, loadingManager),
+      new Sun(scene, loadingManager),
+      new GeneralLights(scene, loadingManager),
+      new StarsBackGround(scene, loadingManager)
     ];
-    const loadingManager = new THREE.LoadingManager( () => {
-	
-      const loadingScreen = document.getElementById( 'loading-screen' );
-      loadingScreen.classList.add( 'fade-out' );
-      
-      // optional: remove loader from DOM via event listener
-      loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
-      
-    } );
-
-    const objectURLs = [];
-      manager.setURLModifier( ( url ) => {
-
-        url = URL.createObjectURL( blobs[ url ] );
-
-        objectURLs.push( url );
-
-        return url;
-
-    } );
 
     return sceneSubjects;
   }
