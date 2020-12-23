@@ -6,8 +6,7 @@ import {
   DirectionalLightZ
 } from "../helpers/constants";
 
-export default scene => {
-  var textureLoader = new THREE.TextureLoader();
+export default (scene, textureLoader) => {
   const sphere = new THREE.SphereGeometry(
     GLOBE_RADIUS * 0.2,
     CURVE_SEGMENTS,

@@ -24,7 +24,8 @@ export default canvas => {
   const camera = buildCamera(screenDimensions);
   const controls = buildControls(camera);
   const loadingManager = buildLoadingManager()
-  const sceneSubjects = createSceneSubjects(scene, loadingManager);
+  const textureLoader = new THREE.TextureLoader(loadingManager);
+  const sceneSubjects = createSceneSubjects(scene, textureLoader);
   createPlane(scene);
   let airPlaneRoot = "";
   let sceneRoutes = [];
@@ -124,13 +125,13 @@ export default canvas => {
     return manager
   }
 
-  function createSceneSubjects(scene, loadingManager) {
+  function createSceneSubjects(scene, textureLoader) {
     const sceneSubjects = [
-      new Earth(scene, loadingManager),
-      new Clouds(scene, loadingManager),
-      new Sun(scene, loadingManager),
-      new GeneralLights(scene, loadingManager),
-      new StarsBackGround(scene, loadingManager)
+      new Earth(scene, textureLoader),
+      new Clouds(scene, textureLoader),
+      new Sun(scene, textureLoader),
+      new StarsBackGround(scene, textureLoader),
+      new GeneralLights(scene)
     ];
 
     return sceneSubjects;

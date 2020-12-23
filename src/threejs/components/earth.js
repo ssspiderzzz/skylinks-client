@@ -6,8 +6,7 @@ import {
   GLOBE_BUMPSCALE
 } from "../helpers/constants";
 
-export default (scene, loadingManager) => {
-  let textureLoader = new THREE.TextureLoader(loadingManager);
+export default (scene, textureLoader) => {
   const geometry_sphere = new THREE.SphereGeometry(
     GLOBE_RADIUS,
     CURVE_SEGMENTS,
