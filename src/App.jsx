@@ -8,8 +8,10 @@ import ResetButton from "./frontcomponents/ResetButton";
 import ScheduleListTable from "./frontcomponents/ScheduleListTable";
 import Logo from "./frontcomponents/Logo";
 import Slider from "./frontcomponents/Slider";
+import { Provider } from 'react-redux'
+import store from './store'
 
-const App = props => {
+const App = () => {
   const [departureAirport, setDepartureAirport] = useState("");
   const [arrivalAirport, setArrivalAirport] = useState(""); //list
   const [departureFs, setDepartureFs] = useState(""); //single
@@ -88,37 +90,41 @@ const App = props => {
     setArrivalAirportFs("");
     setWaypoints([]);
   };
+
   return (
     <>
-      <div>
-        <Logo></Logo>
-        <ScheduleListTable
+      <Provider store={store}>
+        <div>
+          <div style={{position:'absolute'}}> {store.getState().itemsLoaded} </div> 
+          <Logo />
+          <ScheduleListTable
+            newDeparture={departureAirport}
+            newArrival={arrivalAirport}
+            newSchedule={schedule}
+          ></ScheduleListTable>
+          <RouteList
+            newDeparture={departureAirport}
+            newArrival={arrivalAirport}
+            getDepartures={departures}
+            onSelect={onSelect}
+          ></RouteList>
+          <ResetButton onClear={onClear}></ResetButton>
+          <SearchForm getArrival={arrivals} getDepartures={departures} />
+          {waypoints.length > 0 ? (
+            <Slider
+              realFlightPosition={realFlightPosition}
+              setRealFlightPosition={setRealFlightPosition}
+              waypoints={waypoints}
+            />
+          ) : null}
+        </div>
+        <ThreeContainer
+          waypoints={waypoints}
+          realFlightPosition={realFlightPosition}
           newDeparture={departureAirport}
           newArrival={arrivalAirport}
-          newSchedule={schedule}
-        ></ScheduleListTable>
-        <RouteList
-          newDeparture={departureAirport}
-          newArrival={arrivalAirport}
-          getDepartures={departures}
-          onSelect={onSelect}
-        ></RouteList>
-        <ResetButton onClear={onClear}></ResetButton>
-        <SearchForm getArrival={arrivals} getDepartures={departures} />
-        {waypoints.length > 0 ? (
-          <Slider
-            realFlightPosition={realFlightPosition}
-            setRealFlightPosition={setRealFlightPosition}
-            waypoints={waypoints}
-          />
-        ) : null}
-      </div>
-      <ThreeContainer
-        waypoints={waypoints}
-        realFlightPosition={realFlightPosition}
-        newDeparture={departureAirport}
-        newArrival={arrivalAirport}
-      />
+        />
+      </Provider>
     </>
   );
 };

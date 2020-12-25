@@ -9,6 +9,8 @@ import GeneralLights from "./GeneralLights";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { coordinateToPosition } from "./helpers/curve";
+import {TOTAL_ITEMS, LOADING_ITEMS_UPDATE} from'../store/reducer'
+import store from '../store'
 
 export default canvas => {
   const clock = new THREE.Clock();
@@ -118,6 +120,7 @@ export default canvas => {
     };
     manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
       console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+      store.dispatch({ type:LOADING_ITEMS_UPDATE, itemsLoaded:itemsLoaded})
     };
     manager.onLoad = function ( ) {
       console.log( 'Loading complete!');
