@@ -9,7 +9,7 @@ import GeneralLights from "./GeneralLights";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { coordinateToPosition } from "./helpers/curve";
-import {TOTAL_ITEMS, LOADING_ITEMS_UPDATE} from'../store/reducer'
+import {TOTAL_ITEMS, LOADING_ITEMS_UPDATE, LOADING_STATUS_UPDATE} from'../store/reducer'
 import store from '../store'
 
 export default canvas => {
@@ -115,15 +115,17 @@ export default canvas => {
 
   function buildLoadingManager() {
     let manager = new THREE.LoadingManager();
-    manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
-      console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+    manager.onStart = function () {
+      console.log( 'Started loading file.');
     };
     manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
       console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+      store.dispatch({ type:TOTAL_ITEMS, itemsTotal:itemsTotal})
       store.dispatch({ type:LOADING_ITEMS_UPDATE, itemsLoaded:itemsLoaded})
     };
     manager.onLoad = function ( ) {
       console.log( 'Loading complete!');
+      store.dispatch({ type:LOADING_STATUS_UPDATE, loadingCompleted:true})
     };
     return manager
   }

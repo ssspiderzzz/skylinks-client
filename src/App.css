@@ -46,3 +46,11 @@ table {
   opacity: 1;
   transition: 1s opacity;
 }
+
+.loading {
+  position: absolute;
+  color: white;
+  font-size: large;
+  left: 50%;
+  top: 5%;
+}

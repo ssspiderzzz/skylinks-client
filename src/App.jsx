@@ -8,7 +8,7 @@ import ResetButton from "./frontcomponents/ResetButton";
 import ScheduleListTable from "./frontcomponents/ScheduleListTable";
 import Logo from "./frontcomponents/Logo";
 import Slider from "./frontcomponents/Slider";
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
 import store from './store'
 
 const App = () => {
@@ -92,10 +92,9 @@ const App = () => {
   };
 
   return (
-    <>
       <Provider store={store}>
         <div>
-          <div style={{position:'absolute'}}> {store.getState().itemsLoaded} </div> 
+          <div className='loading'> {store.getState().itemsLoaded} </div> 
           <Logo />
           <ScheduleListTable
             newDeparture={departureAirport}
@@ -125,7 +124,7 @@ const App = () => {
           newArrival={arrivalAirport}
         />
       </Provider>
-    </>
+
   );
 };
 
