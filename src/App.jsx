@@ -8,8 +8,7 @@ import ResetButton from "./frontcomponents/ResetButton";
 import ScheduleListTable from "./frontcomponents/ScheduleListTable";
 import Logo from "./frontcomponents/Logo";
 import Slider from "./frontcomponents/Slider";
-import { Provider, connect } from 'react-redux'
-import store from './store'
+import { useSelector } from 'react-redux'
 
 const App = () => {
   const [departureAirport, setDepartureAirport] = useState("");
@@ -91,10 +90,12 @@ const App = () => {
     setWaypoints([]);
   };
 
+  const itemsLoaded = useSelector(state => state.itemsLoaded)
+
   return (
-      <Provider store={store}>
+      <>
         <div>
-          <div className='loading'> {store.getState().itemsLoaded} </div> 
+          <div className='loading'> {itemsLoaded} </div> 
           <Logo />
           <ScheduleListTable
             newDeparture={departureAirport}
@@ -123,9 +124,10 @@ const App = () => {
           newDeparture={departureAirport}
           newArrival={arrivalAirport}
         />
-      </Provider>
+      </>
 
   );
 };
 
 export default App;
+
