@@ -1,5 +1,5 @@
 import React from "react";
-import ResetIcon from "./reset.png";
+import ResetIcon from "../assets/ResetIcon.png";
 import "./ResetButton.css";
 
 export default function ResetButton(props) {

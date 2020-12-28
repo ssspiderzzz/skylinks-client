@@ -3,11 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
-import PlaneLogo from "./flying-airliner.svg";
-import Arrow from "./right-arrow.svg";
 import TextField from "@material-ui/core/TextField";
+import ListItemText from "@material-ui/core/ListItemText";
+import PlaneLogo from "../assets/PlaneLogo.svg";
+import RightArrow from "../assets/RightArrow.svg";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +38,7 @@ export default function FlightList(props) {
                 <ListItemText primary={`${flight.airline}`} />
 
                 <ListItemText>
-                  {flight.departure} <img src={Arrow} height="12" width="12" />{" "}
+                  {flight.departure} <img src={RightArrow} height="12" width="12" />{" "}
                   {flight.arrival}
                 </ListItemText>
               </ListItem>

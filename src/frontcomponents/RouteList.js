@@ -4,10 +4,10 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import AirportTower from "./control-tower.png";
-import Arrow from "./right-arrow.svg";
 import "./RouteList.css";
-import plane from "./niceplane.png";
+import AirportTower from "../assets/AirportTower.png";
+import RightArrow from "../assets/RightArrow.svg";
+import TakeOffPlane from "../assets/TakeOffPlane.png";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,10 +63,10 @@ export default function RouteList(props) {
                     button
                   >
                     <ListItemIcon>
-                      <img alt="PlaneLogo" src={plane} height="44" width="44" />
+                      <img alt="TakeOffPlane" src={TakeOffPlane} height="44" width="44" />
                     </ListItemIcon>
                     <ListItemText>
-                      <img alt="Arrow" src={Arrow} height="12" width="12" /> To:
+                      <img alt="Arrow" src={RightArrow} height="12" width="12" /> To:
                       ({arrival.fs}) <br></br> {arrival.name}
                     </ListItemText>
                   </ListItem>
