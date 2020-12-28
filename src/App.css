@@ -48,9 +48,14 @@ table {
 }
 
 .loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   color: white;
   font-size: large;
-  left: 50%;
-  top: 5%;
+  background-color: black;
+  height: 500px;
+  width: 500px;
+  z-index: 99;
 }

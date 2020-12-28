@@ -90,12 +90,15 @@ const App = () => {
     setWaypoints([]);
   };
 
-  const itemsLoaded = useSelector(state => state.itemsLoaded)
+  const loadingStatus = useSelector(state => state)
+  const loadingPercentage = ((loadingStatus.itemsLoaded / loadingStatus.itemsTotal) * 100).toFixed()
 
   return (
       <>
         <div>
-          <div className='loading'> {itemsLoaded} </div> 
+          {!loadingStatus.loadingCompleted && 
+            <div className='loading'> {loadingPercentage}% </div>
+          }
           <Logo />
           <ScheduleListTable
             newDeparture={departureAirport}
