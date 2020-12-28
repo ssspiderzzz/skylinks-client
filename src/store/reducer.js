@@ -3,7 +3,7 @@ export const LOADING_ITEMS_UPDATE = 'LOADING_ITEMS_UPDATE'
 export const LOADING_STATUS_UPDATE = 'LOADING_STATUS_UPDATE'
 
 const initState = {
-  itemsTotal: 0,
+  itemsTotal: 1,
   itemsLoaded: 0,
   loadingCompleted: false,
 }

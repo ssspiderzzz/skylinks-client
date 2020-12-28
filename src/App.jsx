@@ -96,9 +96,9 @@ const App = () => {
   return (
       <>
         <div>
-          {!loadingStatus.loadingCompleted && 
+          {/* {!loadingStatus.loadingCompleted &&  */}
             <div className='loading'> {loadingPercentage}% </div>
-          }
+          
           <Logo />
           <ScheduleListTable
             newDeparture={departureAirport}
