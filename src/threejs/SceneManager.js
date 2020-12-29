@@ -1,11 +1,11 @@
 import * as THREE from "three";
-import Earth from "./components/earth";
-import StarsBackGround from "./components/stars";
-import Clouds from "./components/clouds";
-import Sun from "./components/sun";
-import FlightRoutes from "./components/flightRoutes";
-import FlightRealRoutes from "./components/realFlightRoutes";
-import GeneralLights from "./GeneralLights";
+import Earth from "./components/Earth";
+import StarsBackGround from "./components/Stars";
+import Clouds from "./components/Clouds";
+import Sun from "./components/Sun";
+import FlightRoutes from "./components/BuildFlightRoutes";
+import FlightRealRoutes from "./components/RealTimeFlightRoutes";
+import GeneralLights from "./components/GeneralLights";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { coordinateToPosition } from "./helpers/curve";

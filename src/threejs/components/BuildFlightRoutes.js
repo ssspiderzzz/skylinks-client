@@ -2,7 +2,7 @@ import * as THREE from "three";
 
 import { getSplineFromCoords } from "../helpers/curve";
 import { CURVE_SEGMENTS } from "../helpers/constants";
-import makePlaneInstance from "./plane";
+import BuildPlanes from "./BuildPlanes";
 
 export default (scene, airport) => {
   if (airport.departure && airport.arrival[0]) {
@@ -30,7 +30,7 @@ export default (scene, airport) => {
       const points = spline.getPoints(CURVE_SEGMENTS);
       const curve_geometry = new THREE.BufferGeometry().setFromPoints(points);
 
-      const plane = makePlaneInstance(spline);
+      const plane = BuildPlanes(spline);
 
       const curvedLine = new THREE.Line(curve_geometry, curve_material);
       curvedLine.name = `line_${departure_airport.fs}_${arrival_airport.fs}`;

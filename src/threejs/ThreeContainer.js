@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import threeEntryPoint from "./threeEntryPoint";
+import ThreeEntryPoint from "./ThreeEntryPoint";
 
 const ThreeContainer = props => {
   const [state, setState] = useState(null);
 
   let threeRootElement = useRef(null);
   useEffect(() => {
-    const manager = threeEntryPoint(threeRootElement);
+    const manager = ThreeEntryPoint(threeRootElement);
     setState(manager);
   }, []);
 

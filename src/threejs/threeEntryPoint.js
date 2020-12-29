@@ -1,6 +1,6 @@
 import SceneManager from "./SceneManager";
 
-const containerElement = elm => {
+const ThreeEntryPoint = elm => {
   const canvas = createCanvas(document, elm);
   const sceneManager = new SceneManager(canvas);
 
@@ -46,4 +46,4 @@ const containerElement = elm => {
   return sceneManager;
 };
 
-export default containerElement;
+export default ThreeEntryPoint;

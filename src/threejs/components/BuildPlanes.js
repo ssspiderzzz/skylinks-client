@@ -18,10 +18,10 @@ export default spline => {
   });
   let plane = new THREE.Mesh(geo, mat);
 
-  const ran_for_airplane = Math.floor(Math.random() * 5000);
+  const ranForAirPlane = Math.floor(Math.random() * 5000);
   setTimeout(() => {
     setInterval(moveontrack, 100);
-  }, ran_for_airplane);
+  }, ranForAirPlane);
 
   return plane;
 

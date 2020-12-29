@@ -3,9 +3,10 @@ import {
   DirectionalLightX,
   DirectionalLightY,
   DirectionalLightZ
-} from "./helpers/constants";
+} from "../helpers/constants";
 
 export default scene => {
+  //Create a new ambient light
   let lightA = new THREE.AmbientLight(0x444444);
   scene.add(lightA);
   //Create a new directional light
@@ -15,12 +16,7 @@ export default scene => {
 
   function update() {}
 
-  function getName() {
-    return "Lights";
-  }
-
   return {
-    update,
-    getName
+    update
   };
 };

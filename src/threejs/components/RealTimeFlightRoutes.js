@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 import { coordinateToPosition } from "../helpers/curve";
-import makePlaneInstance from "./planeRealTime";
+import RealTimePlanes from "./RealTimePlanes";
 
 export default (scene, waypoints) => {
   if (waypoints) {
@@ -25,7 +25,7 @@ export default (scene, waypoints) => {
       var line = new THREE.Line(curve_geometry, mat);
       line.name = "waypointsLine";
 
-      const plane = makePlaneInstance(points);
+      const plane = RealTimePlanes(points);
       plane.name = "realTimePlane";
       plane.points = points;
       line.add(plane);
