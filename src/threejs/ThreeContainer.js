@@ -4,10 +4,10 @@ import ThreeEntryPoint from "./ThreeEntryPoint";
 const ThreeContainer = props => {
   const [state, setState] = useState(null);
 
-  let threeRootElement = useRef(null);
+  let threeMount = useRef(null);
   useEffect(() => {
-    const manager = ThreeEntryPoint(threeRootElement);
-    setState(manager);
+    const sceneManager = ThreeEntryPoint(threeMount);
+    setState(sceneManager);
   }, []);
 
   useEffect(() => {
@@ -34,6 +34,6 @@ const ThreeContainer = props => {
     zIndex: "0"
   };
 
-  return <div style={style} ref={element => (threeRootElement = element)} />;
+  return <div style={style} ref={ref => (threeMount = ref)} />;
 };
 export default ThreeContainer;

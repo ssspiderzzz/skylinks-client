@@ -30,7 +30,7 @@ const App = () => {
 
   const fetchData = () => {
     if (departureFs)
-      axios.get(`/api/airports/${departureFs}`).then(response => {
+      axios.get(`https://skylinks.herokuapp.com/api/airports/${departureFs}`).then(response => {
         if (response.data) {
           setDepartureAirport(response.data.departure);
           setArrivalAirport(response.data.arrival);
@@ -42,7 +42,7 @@ const App = () => {
     if (arrivalAirport.length === 1)
       axios
         .get(
-          `/api/schedules/from/${departureAirport.fs}/to/${arrivalAirport[0].fs}`
+          `https://skylinks.herokuapp.com/api/schedules/from/${departureAirport.fs}/to/${arrivalAirport[0].fs}`
         )
         .then(response => {
           if (response.data) {
@@ -57,7 +57,7 @@ const App = () => {
     if (departureFs && arrivalAirportFs) {
       departure = departureFs;
       arrival = arrivalAirportFs;
-      axios.get(`/api/real/from/${departure}/to/${arrival}`).then(response => {
+      axios.get(`https://skylinks.herokuapp.com/api/real/from/${departure}/to/${arrival}`).then(response => {
         if (response.data) {
           setWaypoints(response.data);
         }

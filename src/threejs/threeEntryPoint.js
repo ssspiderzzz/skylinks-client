@@ -1,17 +1,13 @@
 import SceneManager from "./SceneManager";
 
-const ThreeEntryPoint = elm => {
-  const canvas = createCanvas(document, elm);
+const ThreeEntryPoint = threeRootRef => {
+  const canvas = document.createElement("canvas");
+  threeRootRef.appendChild(canvas);
   const sceneManager = new SceneManager(canvas);
 
   bindEventListeners();
   render();
 
-  function createCanvas(document, containerElement) {
-    const canvas = document.createElement("canvas");
-    containerElement.appendChild(canvas);
-    return canvas;
-  }
   function bindEventListeners() {
     window.onmousedown = selectRoute;
     window.onresize = resizeCanvas;
@@ -26,7 +22,6 @@ const ThreeEntryPoint = elm => {
   function mouseLeave(event) {
     sceneManager.onMouseLeave(event);
   }
-
   function selectRoute(event) {
     sceneManager.onMouseDown(event);
   }
