@@ -97,7 +97,12 @@ const App = () => {
       <>
         <div>
           {/* {!loadingStatus.loadingCompleted &&  */}
-            <div className='loading'> {loadingPercentage}% </div>
+            <div className='loading'> 
+              <p>{loadingPercentage}%</p>
+              <p>Welcome to the Skylinks</p>
+              <p>Thank you for your patience</p>
+              <p>We are preparing for take-off</p>
+            </div>
           
           <Logo />
           <ScheduleListTable
