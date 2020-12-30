@@ -97,7 +97,7 @@ const App = () => {
       <>
         <div>
           {/* {!loadingStatus.loadingCompleted &&  */}
-            <div className='loading'> 
+            <div style={{width: window.innerWidth, height: window.innerHeight}}className='loading'> 
               <p>{loadingPercentage}%</p>
               <p>Welcome to the Skylinks</p>
               <p>Thank you for your patience</p>

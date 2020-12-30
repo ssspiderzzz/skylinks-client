@@ -55,7 +55,7 @@ table {
   position: absolute;
   color: white;
   font-size: large;
-  background-color: black;
+  /* background-color: black; */
   height: 500px;
   width: 500px;
   z-index: 99;
