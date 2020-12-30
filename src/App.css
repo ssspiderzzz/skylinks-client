@@ -60,3 +60,18 @@ table {
   width: 500px;
   z-index: 99;
 }
+
+.loadingLineOne {
+  font-weight: bolder;
+}
+
+.loadingLineTwo,
+.loadingLineThree {
+  font-weight: bold;
+}
+
+.loadingLogo {
+  color: lightblue;
+  text-shadow: 2px 2px 2px #19a4ce;
+  font-family: "Varela Round", sans-serif;
+}
