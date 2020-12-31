@@ -8,6 +8,7 @@ import ResetButton from "./frontcomponents/ResetButton";
 import ScheduleListTable from "./frontcomponents/ScheduleListTable";
 import Logo from "./frontcomponents/Logo";
 import Slider from "./frontcomponents/Slider";
+import ProgressBar from "./frontcomponents/ProgressBar"
 import { useSelector } from 'react-redux'
 
 const App = () => {
@@ -102,6 +103,7 @@ const App = () => {
               <p className='loadingLineTwo'>Thank you for your patience</p>
               <p className='loadingLineThree'>We are preparing for take-off</p>
               <p>{loadingPercentage}%</p>
+              <ProgressBar loadingPercentage={loadingPercentage}/>
             </div>
           
           <Logo />

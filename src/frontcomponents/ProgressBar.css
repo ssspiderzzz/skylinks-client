@@ -1,0 +1,18 @@
+.outterBar {
+  margin: 3px;
+  width: 50%;
+  background-color: gainsboro;
+  border-radius: 10px;
+}
+
+.innerBar {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(57, 141, 244);
+  border-radius: 10px;
+}
+
+.innerBar > span {
+  color: black;
+  font-style: italic;
+}
