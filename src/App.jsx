@@ -102,7 +102,6 @@ const App = () => {
               <p className='loadingLineOne'>Welcome to <span className='loadingLogo'>Skylinks</span></p>
               <p className='loadingLineTwo'>Thank you for your patience</p>
               <p className='loadingLineThree'>We are preparing for take-off</p>
-              <p>{loadingPercentage}%</p>
               <ProgressBar loadingPercentage={loadingPercentage}/>
             </div>
           
