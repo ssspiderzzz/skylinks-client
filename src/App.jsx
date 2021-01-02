@@ -9,7 +9,6 @@ import ScheduleListTable from "./frontcomponents/ScheduleListTable";
 import Logo from "./frontcomponents/Logo";
 import Slider from "./frontcomponents/Slider";
 import ProgressBar from "./frontcomponents/ProgressBar"
-import { useSelector } from 'react-redux'
 
 const App = () => {
   const [departureAirport, setDepartureAirport] = useState("");
@@ -91,14 +90,11 @@ const App = () => {
     setWaypoints([]);
   };
 
-  const loadingStatus = useSelector(state => state)
-  const loadingPercentage = ((loadingStatus.itemsLoaded / loadingStatus.itemsTotal) * 100).toFixed()
-
   return (
       <>
         <div>
           {/* {!loadingStatus.loadingCompleted &&  */}
-          <ProgressBar loadingPercentage={loadingPercentage}/>
+          <ProgressBar />
           
           <Logo />
           <ScheduleListTable

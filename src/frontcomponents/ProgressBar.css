@@ -6,10 +6,11 @@
   position: absolute;
   color: white;
   font-size: large;
-  /* background-color: black; */
+  background-color: black;
   height: 500px;
   width: 500px;
   z-index: 99;
+  transition: opacity 3s;
 }
 
 .loadingLineOne {
@@ -21,10 +22,14 @@
   font-weight: bold;
 }
 
-.loadingLogo {
+.loadingSkylinks {
   color: lightblue;
   text-shadow: 2px 2px 2px #19a4ce;
   font-family: "Varela Round", sans-serif;
+}
+
+.loadingGif {
+  margin: 10px;
 }
 
 .outterBar {
@@ -45,4 +50,8 @@
 .innerBar > span {
   color: black;
   font-style: italic;
+}
+
+.loadingLogo {
+  height: 35px;
 }
