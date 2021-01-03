@@ -44,7 +44,7 @@
   justify-content: center;
   background-color: rgb(57, 141, 244);
   border-radius: 10px;
-  transition: all 0.75s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .loadingLogo {

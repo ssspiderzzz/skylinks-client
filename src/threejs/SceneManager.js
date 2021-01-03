@@ -125,7 +125,9 @@ export default canvas => {
     };
     manager.onLoad = function ( ) {
       console.log( 'Loading complete!');
-      store.dispatch({ type:LOADING_STATUS_UPDATE, loadingCompleted:true})
+      setTimeout(() => {
+        store.dispatch({ type:LOADING_STATUS_UPDATE, loadingCompleted:true})
+      }, 3000)
     };
     return manager
   }
