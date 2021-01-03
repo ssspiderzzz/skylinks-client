@@ -29,14 +29,14 @@
 }
 
 .loadingGif {
-  margin: 10px;
+  margin: 40px;
 }
 
 .outterBar {
   margin: 3px;
   width: 50%;
   background-color: gainsboro;
-  border-radius: 10px;
+  border-radius: 40px;
 }
 
 .innerBar {
@@ -49,4 +49,5 @@
 
 .loadingLogo {
   height: 35px;
+  margin-left: 100%;
 }

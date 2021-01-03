@@ -7,7 +7,7 @@ import SkylinksLogo from "../assets/SkylinksLogo.png";
 export default function ProgressBar(props) {
   const loadingStatus = useSelector(state => state)
   const loadingPercentage = ((loadingStatus.itemsLoaded / loadingStatus.itemsTotal) * 100).toFixed()
-  const loadingOpacity = loadingStatus.loadingCompleted ? 0.5 : 1
+  const loadingOpacity = loadingStatus.loadingCompleted ? 0 : 1
   return (
       <div style={{opacity:loadingOpacity}}className='loading'> 
         <p className='loadingLineOne'>Welcome to <span className='loadingSkylinks'>Skylinks</span></p>
