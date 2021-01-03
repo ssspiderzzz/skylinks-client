@@ -8,7 +8,7 @@ import ResetButton from "./frontcomponents/ResetButton";
 import ScheduleListTable from "./frontcomponents/ScheduleListTable";
 import Logo from "./frontcomponents/Logo";
 import Slider from "./frontcomponents/Slider";
-import ProgressBar from "./frontcomponents/ProgressBar"
+import Loading from "./frontcomponents/Loading"
 
 const App = () => {
   const [departureAirport, setDepartureAirport] = useState("");
@@ -94,7 +94,7 @@ const App = () => {
       <>
         <div>
           {/* {!loadingStatus.loadingCompleted &&  */}
-          <ProgressBar />
+          <Loading />
           
           <Logo />
           <ScheduleListTable
