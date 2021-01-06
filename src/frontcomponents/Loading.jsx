@@ -7,7 +7,7 @@ import SkylinksLogo from "../assets/SkylinksLogo.png";
 export default function Loading(props) {
   const loadingStatus = useSelector(state => state)
   const loadingPercentage = ((loadingStatus.itemsLoaded / loadingStatus.itemsTotal) * 100).toFixed()
-  const loadingOpacity = loadingPercentage == 100 ? 0 : 1
+  const loadingOpacity = loadingPercentage === 100 ? 0 : 1
   return (
     <React.Fragment>
       {!loadingStatus.loadingCompleted && 
