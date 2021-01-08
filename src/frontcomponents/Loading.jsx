@@ -1,38 +1,57 @@
 import React, { useState } from "react";
-import loadingGif from "../assets/loading.svg"
+import loadingGif from "../assets/loading.svg";
 import "./Loading.css";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import SkylinksLogo from "../assets/SkylinksLogo.png";
 
 export default function Loading(props) {
-  const [launch, setLaunch] = useState(false)
-  const loadingStatus = useSelector(state => state)
-  const loadingPercentage = ((loadingStatus.itemsLoaded / loadingStatus.itemsTotal) * 100).toFixed()
-  const loadingOpacity = launch ? 0 : 1
+  const [launch, setLaunch] = useState(false);
+  const loadingStatus = useSelector((state) => state);
+  const loadingPercentage = (
+    (loadingStatus.itemsLoaded / loadingStatus.itemsTotal) *
+    100
+  ).toFixed();
+  const loadingOpacity = launch ? 0 : 1;
   return (
     <React.Fragment>
-        <div style={{opacity:loadingOpacity}}className='loading'> 
-          <p className='loadingLineOne'>Welcome to 
-            <span className='loadingSkylinks'>Skylinks</span>
-          </p>
-          <p className='loadingLineTwo'>Thank you for your patience</p>
-          <p className='loadingLineThree'>We are preparing for take-off</p>
+      <div style={{ opacity: loadingOpacity }} className="loading">
+        <p className="loadingLineOne">
+          Welcome to
+          <span className="loadingSkylinks">Skylinks</span>
+        </p>
+        <p className="loadingLineTwo">Thank you for your patience</p>
+        <p className="loadingLineThree">We are preparing for take-off</p>
 
-          {!loadingStatus.loadingCompleted &&
-            <>
-              <img className ='loadingGif' src={loadingGif} alt="loadingGif"/>
-              <div className='outterBar'>
-                <div className='innerBar' style={{ width: `${loadingPercentage}%` }}>
-                  <img className="loadingLogo" src={SkylinksLogo} alt="plane" />
-                </div>
+        {!loadingStatus.loadingCompleted && (
+          <>
+            <img className="loadingGif" src={loadingGif} alt="loadingGif" />
+            <div className="outterBar">
+              <div
+                className="innerBar"
+                style={{ width: `${loadingPercentage}%` }}
+              >
+                <img className="loadingLogo" src={SkylinksLogo} alt="plane" />
               </div>
-            </>
-          }
-          {loadingStatus.loadingCompleted && 
-            <button onClick={() => {setLaunch(true)}}> Take off now! </button>
-          }
-        </div>
-      
+            </div>
+          </>
+        )}
+        {loadingStatus.loadingCompleted && (
+          <div className="loadingButton">
+            <div
+              className="button"
+              onClick={() => {
+                setLaunch(true);
+              }}
+            >
+              <p>
+                <span class="bg"></span>
+                <span class="base"></span>
+                <span class="text">Take off now!</span>
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
     </React.Fragment>
   );
 }
