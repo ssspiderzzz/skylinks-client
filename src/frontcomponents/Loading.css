@@ -10,7 +10,7 @@
   height: 100%;
   width: 100%;
   z-index: 99;
-  transition: opacity 3s;
+  transition: all ease-in-out 2s;
 }
 
 .loadingLineOne {
@@ -53,6 +53,7 @@
 }
 
 .loadingButton {
+  cursor: pointer;
   display: flex;
   height: 80px;
   width: 100%;

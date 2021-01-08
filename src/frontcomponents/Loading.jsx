@@ -11,10 +11,14 @@ export default function Loading(props) {
     (loadingStatus.itemsLoaded / loadingStatus.itemsTotal) *
     100
   ).toFixed();
+  const loadingVisibility = launch ? "hidden" : "visible";
   const loadingOpacity = launch ? 0 : 1;
   return (
     <React.Fragment>
-      <div style={{ opacity: loadingOpacity }} className="loading">
+      <div
+        style={{ opacity: loadingOpacity, visibility: loadingVisibility }}
+        className="loading"
+      >
         <p className="loadingLineOne">
           Welcome to
           <span className="loadingSkylinks">Skylinks</span>
