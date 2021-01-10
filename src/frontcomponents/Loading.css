@@ -67,7 +67,7 @@
   padding: 8px;
   font-size: 0.8rem;
   font-weight: 900;
-  color: #19a4ce;
+  color: #32aed3;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
@@ -119,7 +119,7 @@
   width: 100%;
   height: 100%;
   left: 0;
-  border: 1px solid #19a4ce;
+  border: 1px solid #32aed3;
 }
 .loadingButton .button p span.base:before {
   content: "";
@@ -134,7 +134,7 @@
 .loadingButton .button p span.bg {
   left: -5%;
   position: absolute;
-  background: #19a4ce;
+  background: #32aed3;
   width: 0;
   height: 100%;
   z-index: 3;
