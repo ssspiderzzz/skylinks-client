@@ -12,7 +12,7 @@ export default function Loading(props) {
     100
   ).toFixed();
   const loadingVisibility = launch ? "hidden" : "visible";
-  const loadingOpacity = launch ? 0 : 1;
+  const loadingOpacity = loadingStatus.loadingCompleted ? (launch ? 0 : 0.8) : 1;
   return (
     <React.Fragment>
       <div style={{ opacity: loadingOpacity, visibility: loadingVisibility }} className="loading">
