@@ -8,7 +8,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import PlaneLogo from "../assets/PlaneLogo.svg";
 import RightArrow from "../assets/RightArrow.svg";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     maxWidth: 360,
@@ -16,8 +16,8 @@ const useStyles = makeStyles(theme => ({
     border: "3px outset #1C6EA4",
     borderRadius: "8px",
     boxShadow: "20px 16px 44px -16px rgba(101,101,102,1)",
-    position: "absolute"
-  }
+    position: "absolute",
+  },
 }));
 
 export default function FlightList(props) {
@@ -26,7 +26,7 @@ export default function FlightList(props) {
   return (
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders">
-        {props.flights.map(flight => {
+        {props.flights.map((flight) => {
           return (
             <>
               <TextField></TextField>

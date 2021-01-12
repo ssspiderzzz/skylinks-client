@@ -15,10 +15,7 @@ export default function Loading(props) {
   const loadingOpacity = launch ? 0 : 1;
   return (
     <React.Fragment>
-      <div
-        style={{ opacity: loadingOpacity, visibility: loadingVisibility }}
-        className="loading"
-      >
+      <div style={{ opacity: loadingOpacity, visibility: loadingVisibility }} className="loading">
         <p className="loadingLineOne">
           Welcome to
           <span className="loadingSkylinks">Skylinks</span>
@@ -30,10 +27,7 @@ export default function Loading(props) {
           <>
             <img className="loadingGif" src={loadingGif} alt="loadingGif" />
             <div className="outterBar">
-              <div
-                className="innerBar"
-                style={{ width: `${loadingPercentage}%` }}
-              >
+              <div className="innerBar" style={{ width: `${loadingPercentage}%` }}>
                 <img className="loadingLogo" src={SkylinksLogo} alt="plane" />
               </div>
             </div>

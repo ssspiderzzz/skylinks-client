@@ -2,7 +2,7 @@ import React from "react";
 import "./Logo.css";
 import SkylinksLogo from "../assets/SkylinksLogo.png";
 
-const Logo = props => {
+const Logo = (props) => {
   return (
     <div id="logo">
       <p>
