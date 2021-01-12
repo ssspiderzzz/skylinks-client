@@ -44,7 +44,7 @@ export default function Loading(props) {
               <p>
                 <span class="bg"></span>
                 <span class="base"></span>
-                <span class="text">Take off now!</span>
+                <span class="text">Start now!</span>
               </p>
             </div>
           </div>
