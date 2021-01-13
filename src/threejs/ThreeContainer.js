@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ThreeEntryPoint from "./ThreeEntryPoint.js";
 
-const ThreeContainer = (props) => {
+export default function ThreeContainer(props) {
   const [state, setState] = useState(null);
 
   let threeMount = useRef(null);
@@ -35,5 +35,4 @@ const ThreeContainer = (props) => {
   };
 
   return <div style={style} ref={(ref) => (threeMount = ref)} />;
-};
-export default ThreeContainer;
+}

@@ -1,6 +1,6 @@
 import SceneManager from "./SceneManager.js";
 
-const ThreeEntryPoint = (threeRootRef) => {
+export default function ThreeEntryPoint(threeRootRef) {
   const canvas = document.createElement("canvas");
   threeRootRef.appendChild(canvas);
   const sceneManager = new SceneManager(canvas);
@@ -39,6 +39,4 @@ const ThreeEntryPoint = (threeRootRef) => {
     requestAnimationFrame(render);
   }
   return sceneManager;
-};
-
-export default ThreeEntryPoint;
+}
