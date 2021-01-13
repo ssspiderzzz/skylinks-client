@@ -1,6 +1,6 @@
-import SceneManager from "./SceneManager";
+import SceneManager from "./SceneManager.js";
 
-const ThreeEntryPoint = threeRootRef => {
+const ThreeEntryPoint = (threeRootRef) => {
   const canvas = document.createElement("canvas");
   threeRootRef.appendChild(canvas);
   const sceneManager = new SceneManager(canvas);

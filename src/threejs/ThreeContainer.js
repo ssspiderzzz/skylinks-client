@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import ThreeEntryPoint from "./ThreeEntryPoint";
+import ThreeEntryPoint from "./ThreeEntryPoint.js";
 
-const ThreeContainer = props => {
+const ThreeContainer = (props) => {
   const [state, setState] = useState(null);
 
   let threeMount = useRef(null);
@@ -21,9 +21,9 @@ const ThreeContainer = props => {
     state.addEntity({
       departure: props.newDeparture,
       arrival: props.newArrival,
-      waypoints: props.waypoints
+      waypoints: props.waypoints,
     });
-    if(props.waypoints.length === 0){
+    if (props.waypoints.length === 0) {
       state.clearAirPlane3d();
     }
   }
@@ -31,9 +31,9 @@ const ThreeContainer = props => {
   const style = {
     height: "100vh",
     overflow: "hidden",
-    zIndex: "0"
+    zIndex: "0",
   };
 
-  return <div style={style} ref={ref => (threeMount = ref)} />;
+  return <div style={style} ref={(ref) => (threeMount = ref)} />;
 };
 export default ThreeContainer;

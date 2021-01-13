@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import ThreeContainer from "./threejs/ThreeContainer";
+import ThreeContainer from "./threejs/ThreeContainer.js";
 import RouteList from "./frontcomponents/RouteList";
 import SearchForm from "./frontcomponents/SearchForm";
 import ResetButton from "./frontcomponents/ResetButton";
