@@ -1,4 +1,7 @@
-form {
+#containerdiv {
+  padding: 8px;
+  color: white;
+
   width: "100%";
   max-width: 320px;
   background-color: lightgray;
@@ -10,22 +13,13 @@ form {
   right: 2px;
 }
 
+#textinput {
+  background-color: transparent;
+  color: white;
+}
+
 .searchbutton {
   right: 160px;
   position: absolute;
   background-color: transparent;
-}
-
-.textinput {
-  background-color: transparent;
-}
-
-#containerdiv {
-  padding: 8px;
-  color: white;
-}
-
-#text {
-  background-color: transparent;
-  color: white;
 }

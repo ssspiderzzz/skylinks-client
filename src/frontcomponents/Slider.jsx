@@ -4,15 +4,15 @@ import Paper from "@material-ui/core/Paper";
 import Slider from "@material-ui/core/Slider";
 import "./Slider.css";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 300 + theme.spacing(3) * 2,
     padding: theme.spacing(2.8),
-    marginBottom: 0
+    marginBottom: 0,
   },
   margin: {
-    height: theme.spacing(0)
-  }
+    height: theme.spacing(0),
+  },
 }));
 
 const PrettoSlider = withStyles({
@@ -20,7 +20,7 @@ const PrettoSlider = withStyles({
     color: "blue",
     height: 8,
     marginBottom: 0,
-    marginTop: 0
+    marginTop: 0,
   },
   thumb: {
     height: 24,
@@ -30,23 +30,23 @@ const PrettoSlider = withStyles({
     marginTop: -8,
     marginLeft: -8,
     "&:focus,&:hover,&$active": {
-      boxShadow: "inherit"
-    }
+      boxShadow: "inherit",
+    },
   },
   active: {},
   valueLabel: {
-    left: "calc(-50% + 4px)"
+    left: "calc(-50% + 4px)",
   },
   track: {
     height: 8,
     borderRadius: 4,
-    marginTop: 0
+    marginTop: 0,
   },
   rail: {
     height: 8,
     borderRadius: 4,
-    marginBottom: 0
-  }
+    marginBottom: 0,
+  },
 })(Slider);
 
 export default function CustomizedSlider(props) {
@@ -59,8 +59,7 @@ export default function CustomizedSlider(props) {
 
   const index = props.waypoints.length - 1;
   const currentIndex = Math.floor((props.realFlightPosition / 100) * index);
-  let totalSeconds =
-    props.waypoints[currentIndex].timestamp - props.waypoints[0].timestamp;
+  let totalSeconds = props.waypoints[currentIndex].timestamp - props.waypoints[0].timestamp;
   let hours = Math.floor(totalSeconds / 3600);
   totalSeconds = totalSeconds % 3600;
   let minutes = Math.floor(totalSeconds / 60);
@@ -75,12 +74,12 @@ export default function CustomizedSlider(props) {
   const marks = [
     {
       value: 0,
-      label: "Depart"
+      label: "Depart",
     },
     {
       value: 100,
-      label: "Arrive"
-    }
+      label: "Arrive",
+    },
   ];
 
   const classes = useStyles();
@@ -96,19 +95,16 @@ export default function CustomizedSlider(props) {
         step={0.5}
       ></PrettoSlider>
       <p> </p>
-      <p id="slidertext" class="text">
+      <p id="slidertext" className="text">
         Altitude: {props.waypoints[currentIndex].position.altitude} Ft.
       </p>
-      <p class="text">
+      <p className="text">
         {hours}:{minutes}:{seconds} Since Departure
       </p>
-      <span class="text">
-        Latitude:{" "}
-        {parseFloat(props.waypoints[currentIndex].position.latitude).toFixed(4)}{" "}
-        -<span></span> Longitude:{" "}
-        {parseFloat(props.waypoints[currentIndex].position.longitude).toFixed(
-          4
-        )}
+      <span className="text">
+        Latitude: {parseFloat(props.waypoints[currentIndex].position.latitude).toFixed(4)} -
+        <span></span> Longitude:{" "}
+        {parseFloat(props.waypoints[currentIndex].position.longitude).toFixed(4)}
       </span>
     </Paper>
   );

@@ -42,9 +42,9 @@ export default function Loading(props) {
               }}
             >
               <p>
-                <span class="bg"></span>
-                <span class="base"></span>
-                <span class="text">Start now!</span>
+                <span className="bg"></span>
+                <span className="base"></span>
+                <span className="text">Start now!</span>
               </p>
             </div>
           </div>
