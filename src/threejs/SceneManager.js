@@ -9,23 +9,23 @@ import GeneralLights from "./components/GeneralLights";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { coordinateToPosition } from "./helpers/curve";
-import {TOTAL_ITEMS, LOADING_ITEMS_UPDATE, LOADING_STATUS_UPDATE} from'../store/reducer'
-import store from '../store'
+import { TOTAL_ITEMS, LOADING_ITEMS_UPDATE, LOADING_STATUS_UPDATE } from "../store/reducer";
+import store from "../store";
 
-export default canvas => {
+export default function SceneManager(canvas) {
   const clock = new THREE.Clock();
   var gltfLoader = new GLTFLoader();
 
   const screenDimensions = {
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
   };
 
   const scene = buildScene();
   const renderer = buildRender(screenDimensions);
   const camera = buildCamera(screenDimensions);
-  const controls = buildControls(camera);
-  const loadingManager = buildLoadingManager()
+  const controls = buildControls(camera, renderer.domElement);
+  const loadingManager = buildLoadingManager();
   const textureLoader = new THREE.TextureLoader(loadingManager);
   const sceneSubjects = createSceneSubjects(scene, textureLoader);
   createPlane(scene);
@@ -34,31 +34,24 @@ export default canvas => {
   let sceneRealRoute = [];
 
   function createPlane(scene) {
-    gltfLoader.load(
-      "https://skylinks.herokuapp.com/with-cors/scene.gltf",
-      gltf => {
-        gltf.scene.traverse(function(child) {
-          if (child.isMesh) {
-            child.name = "airPlaneParts";
-            child.rotation.set(
-              (Math.PI / 180) * 0,
-              (Math.PI / 180) * 0,
-              (Math.PI / 180) * 0
-            );
-            child.geometry.center(); // center here
-          }
-        });
-        const root = gltf.scene;
-        root.scale.set(0.00001, 0.00001, 0.00001);
-        root.name = "real3d";
-        scene.add(root);
+    gltfLoader.load("https://skylinks.herokuapp.com/with-cors/scene.gltf", (gltf) => {
+      gltf.scene.traverse(function (child) {
+        if (child.isMesh) {
+          child.name = "airPlaneParts";
+          child.rotation.set((Math.PI / 180) * 0, (Math.PI / 180) * 0, (Math.PI / 180) * 0);
+          child.geometry.center(); // center here
+        }
+      });
+      const root = gltf.scene;
+      root.scale.set(0.00001, 0.00001, 0.00001);
+      root.name = "real3d";
+      scene.add(root);
 
-        return root;
+      return root;
 
-        // compute the box that contains all the stuff
-        // from root and below
-      }
-    );
+      // compute the box that contains all the stuff
+      // from root and below
+    });
   }
 
   function buildScene() {
@@ -71,7 +64,7 @@ export default canvas => {
   function buildRender({ width, height }) {
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas,
-      powerPreference: "high-performance"
+      powerPreference: "high-performance",
     });
     const DPR = window.devicePixelRatio ? window.devicePixelRatio : 1;
     renderer.setPixelRatio(DPR);
@@ -80,8 +73,8 @@ export default canvas => {
     return renderer;
   }
 
-  function buildControls(camera) {
-    var controls = new OrbitControls(camera);
+  function buildControls(camera, domElement) {
+    var controls = new OrbitControls(camera, domElement);
     controls.minPolarAngle = -Math.PI;
     controls.maxPolarAngle = Math.PI;
     controls.minAzimuthAngle = -Infinity;
@@ -102,12 +95,7 @@ export default canvas => {
     const aspectRatio = width / height;
     const nearPlane = 0.2;
     const farPlane = 10000;
-    const camera = new THREE.PerspectiveCamera(
-      fieldOfView,
-      aspectRatio,
-      nearPlane,
-      farPlane
-    );
+    const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
     camera.position.z = 10;
     return camera;
@@ -116,20 +104,22 @@ export default canvas => {
   function buildLoadingManager() {
     let manager = new THREE.LoadingManager();
     manager.onStart = function () {
-      console.log( 'Started loading file.');
+      console.log("Started loading file.");
     };
-    manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
-      console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-      store.dispatch({ type:TOTAL_ITEMS, itemsTotal:itemsTotal})
-      store.dispatch({ type:LOADING_ITEMS_UPDATE, itemsLoaded:itemsLoaded})
+    manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+      console.log(
+        "Loading file: " + url + ".\nLoaded " + itemsLoaded + " of " + itemsTotal + " files."
+      );
+      store.dispatch({ type: TOTAL_ITEMS, itemsTotal: itemsTotal });
+      store.dispatch({ type: LOADING_ITEMS_UPDATE, itemsLoaded: itemsLoaded });
     };
-    manager.onLoad = function ( ) {
-      console.log( 'Loading complete!');
+    manager.onLoad = function () {
+      console.log("Loading complete!");
       setTimeout(() => {
-        store.dispatch({ type:LOADING_STATUS_UPDATE, loadingCompleted:true})
-      }, 3000)
+        store.dispatch({ type: LOADING_STATUS_UPDATE, loadingCompleted: true });
+      }, 3000);
     };
-    return manager
+    return manager;
   }
 
   function createSceneSubjects(scene, textureLoader) {
@@ -138,7 +128,7 @@ export default canvas => {
       new Clouds(scene, textureLoader),
       new Sun(scene, textureLoader),
       new StarsBackGround(scene, textureLoader),
-      new GeneralLights(scene)
+      new GeneralLights(scene),
     ];
 
     return sceneSubjects;
@@ -163,13 +153,13 @@ export default canvas => {
     var children_to_remove = [];
 
     obj &&
-      obj.traverse(line => {
+      obj.traverse((line) => {
         if (line.type === "Line") {
           children_to_remove.push(line);
         }
       });
     //remove all children
-    children_to_remove.forEach(function(child) {
+    children_to_remove.forEach(function (child) {
       scene.remove(child);
       child.geometry.dispose();
       child.material.dispose();
@@ -182,13 +172,13 @@ export default canvas => {
   function clearWaypoints(obj) {
     var children_to_remove = [];
     obj &&
-      obj.traverse(line => {
+      obj.traverse((line) => {
         if (line.name === "waypointsLine") {
           children_to_remove.push(line);
         }
       });
     //remove all children
-    children_to_remove.forEach(function(child) {
+    children_to_remove.forEach(function (child) {
       scene.remove(child);
       child.geometry.dispose();
       child.material.dispose();
@@ -302,8 +292,7 @@ export default canvas => {
       const index = plane.points.length - 1;
       const current = Math.floor((position / 100) * index);
       plane.position.lerp(plane.points[current], 1);
-      plane.rotation.z =
-        (Math.PI / 180) * waypoints[current].position.direction;
+      plane.rotation.z = (Math.PI / 180) * waypoints[current].position.direction;
       // axis.crossVectors(up, plane.points[current]).normalize();
       // plane.quaternion.setFromAxisAngle(
       //   new THREE.Vector3(0, 1, 0),
@@ -326,6 +315,6 @@ export default canvas => {
     onMouseEnter,
     onMouseLeave,
     updatePosition,
-    clearAirPlane3d
+    clearAirPlane3d,
   };
-};
+}

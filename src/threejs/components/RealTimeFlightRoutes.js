@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { coordinateToPosition } from "../helpers/curve";
 import RealTimePlanes from "./RealTimePlanes";
 
-export default (scene, waypoints) => {
+export default function RealTimeFlightRoutes(scene, waypoints) {
   if (waypoints) {
     const group = new THREE.Group();
     var mat = new THREE.LineBasicMaterial({ color: 0xff0000 });
@@ -14,11 +14,7 @@ export default (scene, waypoints) => {
         const lat = parseFloat(pos.position.latitude);
         const long = parseFloat(pos.position.longitude);
         const alt = parseFloat(pos.position.altitude);
-        const position_Vector3 = coordinateToPosition(
-          lat,
-          long,
-          5 + alt * (5 / 20902000) * 30
-        );
+        const position_Vector3 = coordinateToPosition(lat, long, 5 + alt * (5 / 20902000) * 30);
         points.push(position_Vector3);
       }
       const curve_geometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -40,7 +36,7 @@ export default (scene, waypoints) => {
     function update() {}
 
     return {
-      update
+      update,
     };
   }
-};
+}

@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export default spline => {
+export default function BuildPlanes(spline) {
   let counter = 0;
   let tangent = new THREE.Vector3();
   let axis = new THREE.Vector3();
@@ -10,11 +10,9 @@ export default spline => {
 
   let geo = new THREE.PlaneBufferGeometry(0.2, 0.2, 0.1, 0.1);
   let mat = new THREE.MeshBasicMaterial({
-    map: textureLoader.load(
-      "https://skylinks.herokuapp.com/api/textures/plane.png"
-    ),
+    map: textureLoader.load("https://skylinks.herokuapp.com/api/textures/plane.png"),
     transparent: true,
-    side: THREE.DoubleSide
+    side: THREE.DoubleSide,
   });
   let plane = new THREE.Mesh(geo, mat);
 
@@ -42,4 +40,4 @@ export default spline => {
       counter = 0;
     }
   }
-};
+}

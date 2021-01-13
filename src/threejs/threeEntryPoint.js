@@ -1,4 +1,4 @@
-import SceneManager from "./SceneManager.js";
+import SceneManager from "./SceneManager";
 
 export default function ThreeEntryPoint(threeRootRef) {
   const canvas = document.createElement("canvas");

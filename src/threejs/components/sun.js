@@ -1,31 +1,21 @@
 import * as THREE from "three";
 import { CURVE_SEGMENTS, GLOBE_RADIUS } from "../helpers/constants";
-import {
-  DirectionalLightX,
-  DirectionalLightY,
-  DirectionalLightZ
-} from "../helpers/constants";
+import { DirectionalLightX, DirectionalLightY, DirectionalLightZ } from "../helpers/constants";
 
-export default (scene, textureLoader) => {
-  const sphere = new THREE.SphereGeometry(
-    GLOBE_RADIUS * 0.2,
-    CURVE_SEGMENTS,
-    CURVE_SEGMENTS
-  );
+export default function Sun(scene, textureLoader) {
+  const sphere = new THREE.SphereGeometry(GLOBE_RADIUS * 0.2, CURVE_SEGMENTS, CURVE_SEGMENTS);
 
   const material = new THREE.MeshBasicMaterial({
-    color: 0xfdb813
+    color: 0xfdb813,
   });
 
   const sun = new THREE.Mesh(sphere, material);
 
   var spriteMaterial = new THREE.SpriteMaterial({
-    map: textureLoader.load(
-      "https://skylinks.herokuapp.com/api/textures/glow.png"
-    ),
+    map: textureLoader.load("https://skylinks.herokuapp.com/api/textures/glow.png"),
     color: 0xfdb813,
     transparent: false,
-    blending: THREE.AdditiveBlending
+    blending: THREE.AdditiveBlending,
   });
   var sprite = new THREE.Sprite(spriteMaterial);
   sprite.scale.set(17, 17, 17);
@@ -39,6 +29,6 @@ export default (scene, textureLoader) => {
   function update() {}
 
   return {
-    update
+    update,
   };
-};
+}

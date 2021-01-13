@@ -1,11 +1,7 @@
 import * as THREE from "three";
-import {
-  DirectionalLightX,
-  DirectionalLightY,
-  DirectionalLightZ
-} from "../helpers/constants";
+import { DirectionalLightX, DirectionalLightY, DirectionalLightZ } from "../helpers/constants";
 
-export default scene => {
+export default function GeneralLights(scene) {
   //Create a new ambient light
   let lightA = new THREE.AmbientLight(0x444444);
   scene.add(lightA);
@@ -17,6 +13,6 @@ export default scene => {
   function update() {}
 
   return {
-    update
+    update,
   };
-};
+}

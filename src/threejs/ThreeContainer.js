@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import ThreeEntryPoint from "./ThreeEntryPoint.js";
+import ThreeEntryPoint from "./ThreeEntryPoint";
 
 export default function ThreeContainer(props) {
   const [state, setState] = useState(null);

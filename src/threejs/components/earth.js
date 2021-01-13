@@ -3,18 +3,12 @@ import {
   CURVE_SEGMENTS,
   GLOBE_RADIUS,
   GLOBE_SHININESS,
-  GLOBE_BUMPSCALE
+  GLOBE_BUMPSCALE,
 } from "../helpers/constants";
 
-export default (scene, textureLoader) => {
-  const geometry_sphere = new THREE.SphereGeometry(
-    GLOBE_RADIUS,
-    CURVE_SEGMENTS,
-    CURVE_SEGMENTS
-  );
-  const mapTexture = textureLoader.load(
-    "https://skylinks.herokuapp.com/api/textures/earth.jpg"
-  );
+export default function Earth(scene, textureLoader) {
+  const geometry_sphere = new THREE.SphereGeometry(GLOBE_RADIUS, CURVE_SEGMENTS, CURVE_SEGMENTS);
+  const mapTexture = textureLoader.load("https://skylinks.herokuapp.com/api/textures/earth.jpg");
   const bumbMapTexture = textureLoader.load(
     "https://skylinks.herokuapp.com/api/textures/elev_bump_4k.jpg"
   );
@@ -29,7 +23,7 @@ export default (scene, textureLoader) => {
     bumpScale: GLOBE_BUMPSCALE,
     specularMap: specularMap,
     specular: new THREE.Color("grey"),
-    shininess: GLOBE_SHININESS
+    shininess: GLOBE_SHININESS,
   });
 
   const earth = new THREE.Mesh(geometry_sphere, material);
@@ -40,6 +34,6 @@ export default (scene, textureLoader) => {
   function update() {}
 
   return {
-    update
+    update,
   };
-};
+}

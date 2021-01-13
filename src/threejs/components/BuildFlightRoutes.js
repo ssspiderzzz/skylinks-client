@@ -4,7 +4,7 @@ import { getSplineFromCoords } from "../helpers/curve";
 import { CURVE_SEGMENTS } from "../helpers/constants";
 import BuildPlanes from "./BuildPlanes";
 
-export default (scene, airport) => {
+export default function BuildFlightRoutes(scene, airport) {
   if (airport.departure && airport.arrival[0]) {
     const group = new THREE.Group();
     /**
@@ -13,19 +13,12 @@ export default (scene, airport) => {
      * @param  {} list_of_airports
      */
 
-    function makeLineInstance(
-      departure_airport,
-      arrival_airport,
-      curve_material
-    ) {
+    function makeLineInstance(departure_airport, arrival_airport, curve_material) {
       const startCoor = [
         parseFloat(departure_airport.latitude),
-        parseFloat(departure_airport.longitude)
+        parseFloat(departure_airport.longitude),
       ];
-      const endCoor = [
-        parseFloat(arrival_airport.latitude),
-        parseFloat(arrival_airport.longitude)
-      ];
+      const endCoor = [parseFloat(arrival_airport.latitude), parseFloat(arrival_airport.longitude)];
       const { spline } = getSplineFromCoords(startCoor, endCoor);
       const points = spline.getPoints(CURVE_SEGMENTS);
       const curve_geometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -40,7 +33,7 @@ export default (scene, airport) => {
         fs: arrival_airport.fs,
         name: arrival_airport.name,
         latitude: arrival_airport.latitude,
-        longitude: arrival_airport.longitude
+        longitude: arrival_airport.longitude,
       };
       curvedLine.add(plane);
 
@@ -55,13 +48,9 @@ export default (scene, airport) => {
           blending: THREE.AdditiveBlending,
           opacity: 0.7,
           transparent: true,
-          color: 0xe85d33
+          color: 0xe85d33,
         });
-        const line = makeLineInstance(
-          departure_airport,
-          arrival_airport,
-          curve_material
-        );
+        const line = makeLineInstance(departure_airport, arrival_airport, curve_material);
         if (line) {
           group.add(line);
         }
@@ -77,7 +66,7 @@ export default (scene, airport) => {
     function update() {}
 
     return {
-      update
+      update,
     };
   }
-};
+}
