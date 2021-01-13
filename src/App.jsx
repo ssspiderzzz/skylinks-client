@@ -8,7 +8,7 @@ import ResetButton from "./frontcomponents/ResetButton";
 import ScheduleListTable from "./frontcomponents/ScheduleListTable";
 import Logo from "./frontcomponents/Logo";
 import Slider from "./frontcomponents/Slider";
-import Loading from "./frontcomponents/Loading"
+import Loading from "./frontcomponents/Loading";
 
 const App = () => {
   const [departureAirport, setDepartureAirport] = useState("");
@@ -30,7 +30,7 @@ const App = () => {
 
   const fetchData = () => {
     if (departureFs)
-      axios.get(`https://skylinks.herokuapp.com/api/airports/${departureFs}`).then(response => {
+      axios.get(`https://skylinks.herokuapp.com/api/airports/${departureFs}`).then((response) => {
         if (response.data) {
           setDepartureAirport(response.data.departure);
           setArrivalAirport(response.data.arrival);
@@ -44,7 +44,7 @@ const App = () => {
         .get(
           `https://skylinks.herokuapp.com/api/schedules/from/${departureAirport.fs}/to/${arrivalAirport[0].fs}`
         )
-        .then(response => {
+        .then((response) => {
           if (response.data) {
             setSchedule(response.data);
           }
@@ -57,26 +57,28 @@ const App = () => {
     if (departureFs && arrivalAirportFs) {
       departure = departureFs;
       arrival = arrivalAirportFs;
-      axios.get(`https://skylinks.herokuapp.com/api/real/from/${departure}/to/${arrival}`).then(response => {
-        if (response.data) {
-          setWaypoints(response.data);
-        }
-      });
+      axios
+        .get(`https://skylinks.herokuapp.com/api/real/from/${departure}/to/${arrival}`)
+        .then((response) => {
+          if (response.data) {
+            setWaypoints(response.data);
+          }
+        });
     }
   };
 
   const arrivals = () => {};
 
-  const departures = departure => {
-    if (departure === departureFs) {
+  const getDepartures = (departureAirportCode) => {
+    if (departureAirportCode === departureFs) {
       fetchData();
       setDepartureFs("");
       setWaypoints([]);
     }
-    setDepartureFs(departure.toUpperCase());
+    setDepartureFs(departureAirportCode.toUpperCase());
   };
 
-  const onSelect = selected_arrival => {
+  const onSelect = (selected_arrival) => {
     setArrivalAirport([selected_arrival]);
     setArrivalAirportFs([selected_arrival.fs][0]);
   };
@@ -91,39 +93,37 @@ const App = () => {
   };
 
   return (
-      <>
-        <Loading />
-        <Logo />
-        <ScheduleListTable
-          newDeparture={departureAirport}
-          newArrival={arrivalAirport}
-          newSchedule={schedule}
-        ></ScheduleListTable>
-        <RouteList
-          newDeparture={departureAirport}
-          newArrival={arrivalAirport}
-          getDepartures={departures}
-          onSelect={onSelect}
-        ></RouteList>
-        <ResetButton onClear={onClear}></ResetButton>
-        <SearchForm getArrival={arrivals} getDepartures={departures} />
-        {waypoints.length > 0 ? (
-          <Slider
-            realFlightPosition={realFlightPosition}
-            setRealFlightPosition={setRealFlightPosition}
-            waypoints={waypoints}
-          />
-        ) : null}
-        <ThreeContainer
-          waypoints={waypoints}
+    <>
+      <Loading />
+      <Logo />
+      <ScheduleListTable
+        newDeparture={departureAirport}
+        newArrival={arrivalAirport}
+        newSchedule={schedule}
+      ></ScheduleListTable>
+      <RouteList
+        newDeparture={departureAirport}
+        newArrival={arrivalAirport}
+        getDepartures={getDepartures}
+        onSelect={onSelect}
+      ></RouteList>
+      <ResetButton onClear={onClear}></ResetButton>
+      <SearchForm getArrival={arrivals} getDepartures={getDepartures} />
+      {waypoints.length > 0 ? (
+        <Slider
           realFlightPosition={realFlightPosition}
-          newDeparture={departureAirport}
-          newArrival={arrivalAirport}
+          setRealFlightPosition={setRealFlightPosition}
+          waypoints={waypoints}
         />
-      </>
-
+      ) : null}
+      <ThreeContainer
+        waypoints={waypoints}
+        realFlightPosition={realFlightPosition}
+        newDeparture={departureAirport}
+        newArrival={arrivalAirport}
+      />
+    </>
   );
 };
 
 export default App;
-

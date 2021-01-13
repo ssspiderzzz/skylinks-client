@@ -14,7 +14,7 @@ const SearchForm = (props) => {
             allowClear
             id="text"
             className="textinput"
-            placeholder="Search Airport Code"
+            placeholder='"YVR"'
             enterButton="Search"
             size="large"
             onSearch={(value, event) => {
