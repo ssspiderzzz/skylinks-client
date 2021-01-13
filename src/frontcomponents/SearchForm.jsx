@@ -8,18 +8,18 @@ const SearchForm = (props) => {
   const { Search } = Input;
 
   return (
-    <div id="containerdiv">
+    <div className="searchFormContainer">
       <Search
         allowClear
-        id="textinput"
-        placeholder='"YVR"'
+        id="searchTextInput"
+        placeholder='Try "YVR"'
         enterButton="Search"
         size="large"
         onSearch={(value, event) => {
           event.preventDefault();
           props.getDepartures(value);
         }}
-      ></Search>
+      />
     </div>
   );
 };

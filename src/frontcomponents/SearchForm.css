@@ -1,4 +1,4 @@
-#containerdiv {
+.searchFormContainer {
   padding: 8px;
   color: white;
 
@@ -13,13 +13,7 @@
   right: 2px;
 }
 
-#textinput {
+#searchTextInput {
   background-color: transparent;
   color: white;
-}
-
-.searchbutton {
-  right: 160px;
-  position: absolute;
-  background-color: transparent;
 }
