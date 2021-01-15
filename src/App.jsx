@@ -68,11 +68,17 @@ const App = () => {
   const arrivals = () => {};
 
   const getDepartures = (departureAirportCode) => {
-    // if (departureAirportCode === departureFs) {
-    //   fetchData();
-    //   setDepartureFs("");
-    //   setWaypoints([]);
-    // }
+    if (departureAirportCode === departureFs) {
+      if (departureFs)
+        axios.get(`https://skylinks.herokuapp.com/api/airports/${departureFs}`).then((response) => {
+          if (response.data) {
+            setDepartureAirport(response.data.departure);
+            setArrivalAirport(response.data.arrival);
+          }
+        });
+      setDepartureFs("");
+      setWaypoints([]);
+    }
     setDepartureFs(departureAirportCode.toUpperCase());
   };
 
