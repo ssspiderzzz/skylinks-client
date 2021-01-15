@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { CURVE_SEGMENTS, GLOBE_RADIUS } from "../helpers/constants";
 
-export default function Stars(scene, textureLoader) {
+const Stars = (scene, textureLoader) => {
   const sphere = new THREE.SphereGeometry(GLOBE_RADIUS * 15, CURVE_SEGMENTS, CURVE_SEGMENTS);
   const map = textureLoader.load("https://skylinks.herokuapp.com/api/textures/milkyway_4k.jpg");
   map.wrapS = THREE.RepeatWrapping;
@@ -23,4 +23,6 @@ export default function Stars(scene, textureLoader) {
   return {
     update,
   };
-}
+};
+
+export default Stars;

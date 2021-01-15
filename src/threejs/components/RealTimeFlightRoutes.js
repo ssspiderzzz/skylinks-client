@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { coordinateToPosition } from "../helpers/curve";
 import RealTimePlanes from "./RealTimePlanes";
 
-export default function RealTimeFlightRoutes(scene, waypoints) {
+const RealTimeFlightRoutes = (scene, waypoints) => {
   if (waypoints) {
     const group = new THREE.Group();
     var mat = new THREE.LineBasicMaterial({ color: 0xff0000 });
@@ -39,4 +39,6 @@ export default function RealTimeFlightRoutes(scene, waypoints) {
       update,
     };
   }
-}
+};
+
+export default RealTimeFlightRoutes;

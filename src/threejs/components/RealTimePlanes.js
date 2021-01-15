@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export default function RealTimePlanes(points) {
+const RealTimePlanes = (points) => {
   var textureLoader = new THREE.TextureLoader();
 
   // let counter = 0;
@@ -26,4 +26,6 @@ export default function RealTimePlanes(points) {
   //     counter = 0;
   //   }
   // }
-}
+};
+
+export default RealTimePlanes;

@@ -124,21 +124,21 @@ export default function SceneManager(canvas) {
 
   function createSceneSubjects(scene, textureLoader) {
     const sceneSubjects = [
-      new Earth(scene, textureLoader),
-      new Clouds(scene, textureLoader),
-      new Sun(scene, textureLoader),
-      new StarsBackGround(scene, textureLoader),
-      new GeneralLights(scene),
+      Earth(scene, textureLoader),
+      Clouds(scene, textureLoader),
+      Sun(scene, textureLoader),
+      StarsBackGround(scene, textureLoader),
+      GeneralLights(scene),
     ];
 
     return sceneSubjects;
   }
 
   function createSceneRoute(scene, airport) {
-    return [new FlightRoutes(scene, airport)];
+    return [FlightRoutes(scene, airport)];
   }
   function createSceneRealRoute(scene, airport) {
-    return [new FlightRealRoutes(scene, airport)];
+    return [FlightRealRoutes(scene, airport)];
   }
 
   function addEntity(airport) {

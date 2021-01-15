@@ -14,7 +14,7 @@ export default function ThreeContainer(props) {
     if (props.realFlightPosition && props.waypoints.length > 0) {
       state.updatePosition(props.realFlightPosition, props.waypoints);
     }
-  }, [props.realFlightPosition]);
+  }, [props.realFlightPosition, props.waypoints, state]);
 
   if (state) {
     state.clear();

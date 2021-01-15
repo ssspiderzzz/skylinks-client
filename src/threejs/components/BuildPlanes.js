@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export default function BuildPlanes(spline) {
+const BuildPlanes = (spline) => {
   let counter = 0;
   let tangent = new THREE.Vector3();
   let axis = new THREE.Vector3();
@@ -40,4 +40,6 @@ export default function BuildPlanes(spline) {
       counter = 0;
     }
   }
-}
+};
+
+export default BuildPlanes;

@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { CURVE_SEGMENTS, GLOBE_RADIUS } from "../helpers/constants";
 import { DirectionalLightX, DirectionalLightY, DirectionalLightZ } from "../helpers/constants";
 
-export default function Sun(scene, textureLoader) {
+const Sun = (scene, textureLoader) => {
   const sphere = new THREE.SphereGeometry(GLOBE_RADIUS * 0.2, CURVE_SEGMENTS, CURVE_SEGMENTS);
 
   const material = new THREE.MeshBasicMaterial({
@@ -31,4 +31,6 @@ export default function Sun(scene, textureLoader) {
   return {
     update,
   };
-}
+};
+
+export default Sun;

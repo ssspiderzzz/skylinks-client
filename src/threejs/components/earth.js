@@ -6,7 +6,7 @@ import {
   GLOBE_BUMPSCALE,
 } from "../helpers/constants";
 
-export default function Earth(scene, textureLoader) {
+const Earth = (scene, textureLoader) => {
   const geometry_sphere = new THREE.SphereGeometry(GLOBE_RADIUS, CURVE_SEGMENTS, CURVE_SEGMENTS);
   const mapTexture = textureLoader.load("https://skylinks.herokuapp.com/api/textures/earth.jpg");
   const bumbMapTexture = textureLoader.load(
@@ -36,4 +36,6 @@ export default function Earth(scene, textureLoader) {
   return {
     update,
   };
-}
+};
+
+export default Earth;

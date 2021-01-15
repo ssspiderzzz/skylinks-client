@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { CURVE_SEGMENTS, GLOBE_RADIUS } from "../helpers/constants";
 
-export default function Clouds(scene, textureLoader) {
+const Clouds = (scene, textureLoader) => {
   const sphere = new THREE.SphereGeometry(GLOBE_RADIUS + 0.1, CURVE_SEGMENTS, CURVE_SEGMENTS);
 
   const material = new THREE.MeshPhongMaterial({
@@ -22,4 +22,6 @@ export default function Clouds(scene, textureLoader) {
   return {
     update,
   };
-}
+};
+
+export default Clouds;

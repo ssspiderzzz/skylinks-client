@@ -4,7 +4,7 @@ import { getSplineFromCoords } from "../helpers/curve";
 import { CURVE_SEGMENTS } from "../helpers/constants";
 import BuildPlanes from "./BuildPlanes";
 
-export default function BuildFlightRoutes(scene, airport) {
+const BuildFlightRoutes = (scene, airport) => {
   if (airport.departure && airport.arrival[0]) {
     const group = new THREE.Group();
     /**
@@ -69,4 +69,6 @@ export default function BuildFlightRoutes(scene, airport) {
       update,
     };
   }
-}
+};
+
+export default BuildFlightRoutes;
