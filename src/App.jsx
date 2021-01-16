@@ -20,62 +20,58 @@ const App = () => {
   const [realFlightPosition, setRealFlightPosition] = useState(0);
 
   useEffect(() => {
-    const fetchData = () => {
-      if (departureFs)
-        axios.get(`https://skylinks.herokuapp.com/api/airports/${departureFs}`).then((response) => {
-          if (response.data) {
-            setDepartureAirport(response.data.departure);
-            setArrivalAirport(response.data.arrival);
-          }
-        });
-    };
-
     fetchData();
   }, [departureFs]);
 
   useEffect(() => {
-    const fetchFlightSchedule = () => {
-      if (arrivalAirport.length === 1)
-        axios
-          .get(
-            `https://skylinks.herokuapp.com/api/schedules/from/${departureAirport.fs}/to/${arrivalAirport[0].fs}`
-          )
-          .then((response) => {
-            if (response.data) {
-              setSchedule(response.data);
-            }
-          });
-    };
-    const fetchWaypoints = () => {
-      let departure = "";
-      let arrival = "";
-      if (departureFs && arrivalAirportFs) {
-        departure = departureFs;
-        arrival = arrivalAirportFs;
-        axios
-          .get(`https://skylinks.herokuapp.com/api/real/from/${departure}/to/${arrival}`)
-          .then((response) => {
-            if (response.data) {
-              setWaypoints(response.data);
-            }
-          });
-      }
-    };
     fetchFlightSchedule();
     fetchWaypoints();
-  }, [arrivalAirportFs, departureFs, arrivalAirport, departureAirport]);
+  }, [arrivalAirportFs]);
+
+  const fetchData = () => {
+    if (departureFs)
+      axios.get(`https://skylinks.herokuapp.com/api/airports/${departureFs}`).then((response) => {
+        if (response.data) {
+          setDepartureAirport(response.data.departure);
+          setArrivalAirport(response.data.arrival);
+        }
+      });
+  };
+
+  const fetchFlightSchedule = () => {
+    if (arrivalAirport.length === 1)
+      axios
+        .get(
+          `https://skylinks.herokuapp.com/api/schedules/from/${departureAirport.fs}/to/${arrivalAirport[0].fs}`
+        )
+        .then((response) => {
+          if (response.data) {
+            setSchedule(response.data);
+          }
+        });
+  };
+
+  const fetchWaypoints = () => {
+    let departure = "";
+    let arrival = "";
+    if (departureFs && arrivalAirportFs) {
+      departure = departureFs;
+      arrival = arrivalAirportFs;
+      axios
+        .get(`https://skylinks.herokuapp.com/api/real/from/${departure}/to/${arrival}`)
+        .then((response) => {
+          if (response.data) {
+            setWaypoints(response.data);
+          }
+        });
+    }
+  };
 
   const arrivals = () => {};
 
   const getDepartures = (departureAirportCode) => {
     if (departureAirportCode === departureFs) {
-      if (departureFs)
-        axios.get(`https://skylinks.herokuapp.com/api/airports/${departureFs}`).then((response) => {
-          if (response.data) {
-            setDepartureAirport(response.data.departure);
-            setArrivalAirport(response.data.arrival);
-          }
-        });
+      fetchData();
       setDepartureFs("");
       setWaypoints([]);
     }
