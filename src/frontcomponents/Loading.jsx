@@ -28,7 +28,7 @@ export default function Loading(props) {
             <img className="loadingGif" src={loadingGif} alt="loadingGif" />
             <div className="outterBar">
               <div className="innerBar" style={{ width: `${loadingPercentage}%` }}>
-                <img className="loadingLogo" src={SkylinksLogo} alt="plane" />
+                <img className="loadingLogo" src={SkylinksLogo} alt="loadingLogo" />
               </div>
             </div>
           </>
