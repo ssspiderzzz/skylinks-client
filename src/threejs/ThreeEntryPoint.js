@@ -5,16 +5,12 @@ export default function ThreeEntryPoint(threeRootRef) {
   threeRootRef.appendChild(canvas);
   const sceneManager = new SceneManager(canvas);
 
-  bindEventListeners();
+  window.onresize = resizeCanvas;
+  document.addEventListener("mousedown", mouseDown, false);
+  canvas.onmouseenter = mouseEnter;
+  canvas.onmouseleave = mouseLeave;
+  resizeCanvas();
   render();
-
-  function bindEventListeners() {
-    window.onmousedown = selectRoute;
-    window.onresize = resizeCanvas;
-    canvas.onmouseenter = mouseEnter;
-    canvas.onmouseleave = mouseLeave;
-    resizeCanvas();
-  }
 
   function mouseEnter(event) {
     sceneManager.onMouseEnter(event);
@@ -22,7 +18,7 @@ export default function ThreeEntryPoint(threeRootRef) {
   function mouseLeave(event) {
     sceneManager.onMouseLeave(event);
   }
-  function selectRoute(event) {
+  function mouseDown(event) {
     sceneManager.onMouseDown(event);
   }
 
