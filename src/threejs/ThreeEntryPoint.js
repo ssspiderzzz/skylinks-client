@@ -6,7 +6,7 @@ export default function ThreeEntryPoint(threeRootRef) {
   const sceneManager = new SceneManager(canvas);
 
   window.onresize = resizeCanvas;
-  document.addEventListener("mousedown", mouseDown, false);
+  canvas.onmousedown = mouseDown;
   canvas.onmouseenter = mouseEnter;
   canvas.onmouseleave = mouseLeave;
   resizeCanvas();

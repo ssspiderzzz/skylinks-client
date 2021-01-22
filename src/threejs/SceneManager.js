@@ -238,7 +238,7 @@ export default function SceneManager(canvas) {
       -(event.clientY / window.innerHeight) * 2 + 1
     );
     let raycaster = new THREE.Raycaster();
-    raycaster.params.Line.threshold = 0.1;
+    raycaster.linePrecision = 0.1;
     raycaster.setFromCamera(mouse3D, camera);
     // find the object that we want to intersect
 
