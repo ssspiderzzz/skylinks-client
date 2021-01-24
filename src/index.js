@@ -12,8 +12,6 @@ if (process.env.REACT_APP_API_BASE_URL) {
   axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 }
 
-console.log(axios.defaults.baseURL);
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
