@@ -14,7 +14,6 @@ import store from "../store";
 
 export default function SceneManager(canvas) {
   const clock = new THREE.Clock();
-  var gltfLoader = new GLTFLoader();
 
   const screenDimensions = {
     width: window.innerWidth,
@@ -28,12 +27,13 @@ export default function SceneManager(canvas) {
   const loadingManager = buildLoadingManager();
   const textureLoader = new THREE.TextureLoader(loadingManager);
   const sceneSubjects = createSceneSubjects(scene, textureLoader);
-  createPlane(scene);
+  Load3DPlane(scene);
   let airPlaneRoot = "";
   let sceneRoutes = [];
   let sceneRealRoute = [];
 
-  function createPlane(scene) {
+  function Load3DPlane(scene) {
+    const gltfLoader = new GLTFLoader(loadingManager);
     gltfLoader.load("https://skylinks.herokuapp.com/with-cors/scene.gltf", (gltf) => {
       gltf.scene.traverse(function (child) {
         if (child.isMesh) {
@@ -46,9 +46,6 @@ export default function SceneManager(canvas) {
       root.scale.set(0.00001, 0.00001, 0.00001);
       root.name = "real3d";
       scene.add(root);
-
-      return root;
-
       // compute the box that contains all the stuff
       // from root and below
     });

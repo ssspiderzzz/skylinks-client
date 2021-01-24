@@ -11,10 +11,10 @@ import Slider from "./frontcomponents/Slider";
 import Loading from "./frontcomponents/Loading";
 
 const App = () => {
-  const [departureAirport, setDepartureAirport] = useState("");
-  const [arrivalAirport, setArrivalAirport] = useState(""); //list
   const [departureFs, setDepartureFs] = useState(""); //single
-  const [arrivalAirportFs, setArrivalAirportFs] = useState("");
+  const [arrivalFs, setArrivalFs] = useState(""); //single
+  const [departureAirport, setDepartureAirport] = useState(""); //single
+  const [arrivalAirport, setArrivalAirport] = useState(""); //list
   const [schedule, setSchedule] = useState("");
   const [waypoints, setWaypoints] = useState([]);
   const [realFlightPosition, setRealFlightPosition] = useState(0);
@@ -26,7 +26,7 @@ const App = () => {
   useEffect(() => {
     fetchFlightSchedule();
     fetchWaypoints();
-  }, [arrivalAirportFs]);
+  }, [arrivalFs]);
 
   const fetchData = () => {
     if (departureFs)
@@ -54,9 +54,9 @@ const App = () => {
   const fetchWaypoints = () => {
     let departure = "";
     let arrival = "";
-    if (departureFs && arrivalAirportFs) {
+    if (departureFs && arrivalFs) {
       departure = departureFs;
-      arrival = arrivalAirportFs;
+      arrival = arrivalFs;
       axios
         .get(`https://skylinks.herokuapp.com/api/real/from/${departure}/to/${arrival}`)
         .then((response) => {
@@ -80,7 +80,7 @@ const App = () => {
 
   const onSelect = (selected_arrival) => {
     setArrivalAirport([selected_arrival]);
-    setArrivalAirportFs([selected_arrival.fs][0]);
+    setArrivalFs([selected_arrival.fs][0]);
   };
 
   const onClear = () => {
@@ -88,7 +88,7 @@ const App = () => {
     setArrivalAirport("");
     setSchedule("");
     setDepartureFs("");
-    setArrivalAirportFs("");
+    setArrivalFs("");
     setWaypoints([]);
   };
 
