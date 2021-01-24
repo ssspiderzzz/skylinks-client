@@ -1,36 +1,22 @@
-import React from "react";
-import { Input } from "antd";
-
-import "antd/dist/antd.css";
+import React, { useState } from "react";
 import "./SearchForm.css";
 
 const SearchForm = (props) => {
-  const { Search } = Input;
+  const [inputState, setInputState] = useState("");
 
   return (
     <div className="searchFormContainer">
       <span className="searchInputButtonWrapper">
         <span className="searchInputWrapper">
-          <input></input>
+          <input
+            onChange={(event) => setInputState(event.target.value)}
+            placeholder='Try "YVR"'
+          ></input>
         </span>
         <span className="searchButtonWrapper">
-          <button>Search</button>
+          <button onClick={() => props.getDepartures(inputState)}>Search</button>
         </span>
       </span>
-      {/* <Search
-        allowClear
-        id="searchTextInput"
-        placeholder='Try "YVR"'
-        enterButton="Search"
-        size="large"
-        onChange={(value) => {
-          console.log(value);
-        }}
-        onSearch={(value, event) => {
-          event.preventDefault();
-          props.getDepartures(value);
-        }}
-      /> */}
     </div>
   );
 };
