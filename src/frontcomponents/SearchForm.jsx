@@ -5,7 +5,6 @@ import "./SearchForm.css";
 
 const options = {
   shouldSort: true,
-  includeScore: true,
   distance: 300,
   threshold: 0.2,
   keys: ["airportName"],
@@ -14,12 +13,15 @@ const options = {
 const SearchForm = (props) => {
   const [inputState, setInputState] = useState("");
   const [fsCodeState, setFsCodeState] = useState("");
-  let airportNames;
+  const [dropDownListState, setDropDownListState] = useState(false);
+
+  let airportNames = [];
   if (inputState) {
     const fuseName = new Fuse(airportFullNames, options);
     airportNames = fuseName.search(inputState).slice(0, 10);
   }
 
+  console.log(airportNames);
   return (
     <div className="searchFormContainer">
       <span className="searchInputButtonWrapper">
@@ -28,9 +30,9 @@ const SearchForm = (props) => {
             value={inputState}
             onChange={(event) => {
               setInputState(event.target.value);
-              setFsCodeState(event.target.value);
             }}
-            placeholder='Try "YVR"'
+            onFocus={() => setDropDownListState(true)}
+            placeholder="Search Airport Here"
           ></input>
         </span>
         <span className="searchButtonWrapper">
@@ -43,25 +45,28 @@ const SearchForm = (props) => {
           </button>
         </span>
       </span>
-      <div id="myDropdown" class="dropdown-content">
-        {airportNames ? (
-          airportNames.map((airport) => {
-            return (
-              <span
-                key={`${airport.item.fs}`}
-                onClick={() => {
-                  setInputState(airport.item.airportName);
-                  setFsCodeState(airport.item.fs);
-                }}
-              >
-                {airport.item.airportName}
-              </span>
-            );
-          })
-        ) : (
-          <span key={`No Results`}>No Matches Found</span>
-        )}
-      </div>
+      {dropDownListState && (
+        <div className="dropdown-content">
+          {airportNames.length > 0 ? (
+            airportNames.map((airport) => {
+              return (
+                <span
+                  key={`${airport.item.fs}`}
+                  onClick={() => {
+                    setInputState(airport.item.airportName);
+                    setFsCodeState(airport.item.fs);
+                    setDropDownListState(false);
+                  }}
+                >
+                  {airport.item.airportName}
+                </span>
+              );
+            })
+          ) : (
+            <span key={`No Results`}>No Matches Found</span>
+          )}
+        </div>
+      )}
     </div>
   );
 };
