@@ -5,7 +5,6 @@ import "./App.css";
 import ThreeContainer from "./threejs/ThreeContainer";
 import RouteList from "./frontcomponents/RouteList";
 import SearchForm from "./frontcomponents/SearchForm";
-import ResetButton from "./frontcomponents/ResetButton";
 import ScheduleListTable from "./frontcomponents/ScheduleListTable";
 import Logo from "./frontcomponents/Logo";
 import Slider from "./frontcomponents/Slider";
@@ -108,8 +107,7 @@ const App = () => {
         getDepartures={getDepartures}
         onSelect={onSelect}
       ></RouteList>
-      <ResetButton onClear={onClear}></ResetButton>
-      <SearchForm getArrival={arrivals} getDepartures={getDepartures} />
+      <SearchForm getArrival={arrivals} getDepartures={getDepartures} onClear={onClear} />
       {waypoints.length > 0 ? (
         <Slider
           realFlightPosition={realFlightPosition}
