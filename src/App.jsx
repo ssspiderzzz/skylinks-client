@@ -10,6 +10,8 @@ import Logo from "./frontcomponents/Logo";
 import Slider from "./frontcomponents/Slider";
 import Loading from "./frontcomponents/Loading";
 
+const baseUrl = "https://skylinks-api.onrender.com";
+
 const App = () => {
   const [departureFs, setDepartureFs] = useState(""); //single
   const [arrivalFs, setArrivalFs] = useState(""); //single
@@ -30,7 +32,7 @@ const App = () => {
 
   const fetchData = () => {
     if (departureFs)
-      axios.get(`https://skylinks.herokuapp.com/api/airports/${departureFs}`).then((response) => {
+      axios.get(`${baseUrl}/api/airports/${departureFs}`).then((response) => {
         if (response.data) {
           setDepartureAirport(response.data.departure);
           setArrivalAirport(response.data.arrival);
@@ -42,7 +44,7 @@ const App = () => {
     if (arrivalAirport.length === 1)
       axios
         .get(
-          `https://skylinks.herokuapp.com/api/schedules/from/${departureAirport.fs}/to/${arrivalAirport[0].fs}`
+          `${baseUrl}/api/schedules/from/${departureAirport.fs}/to/${arrivalAirport[0].fs}`
         )
         .then((response) => {
           if (response.data) {
@@ -58,7 +60,7 @@ const App = () => {
       departure = departureFs;
       arrival = arrivalFs;
       axios
-        .get(`https://skylinks.herokuapp.com/api/real/from/${departure}/to/${arrival}`)
+        .get(`${baseUrl}/api/real/from/${departure}/to/${arrival}`)
         .then((response) => {
           if (response.data) {
             setWaypoints(response.data);
