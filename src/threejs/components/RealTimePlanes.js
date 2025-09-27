@@ -10,7 +10,9 @@ const RealTimePlanes = (points) => {
 
   let geo = new THREE.PlaneBufferGeometry(1, 1, 1);
   let mat = new THREE.MeshBasicMaterial({
-    map: textureLoader.load("https://skylinks.herokuapp.com/api/textures/plane.png"),
+    map: textureLoader.load(
+      `${process.env.REACT_APP_API_BASE_URL}/api/textures/plane.png`
+    ),
     transparent: true,
   });
   let plane = new THREE.Mesh(geo, mat);

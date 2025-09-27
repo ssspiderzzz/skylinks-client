@@ -2,8 +2,14 @@ import * as THREE from "three";
 import { CURVE_SEGMENTS, GLOBE_RADIUS } from "../helpers/constants";
 
 const Stars = (scene, textureLoader) => {
-  const sphere = new THREE.SphereGeometry(GLOBE_RADIUS * 15, CURVE_SEGMENTS, CURVE_SEGMENTS);
-  const map = textureLoader.load("https://skylinks.herokuapp.com/api/textures/milkyway_4k.jpg");
+  const sphere = new THREE.SphereGeometry(
+    GLOBE_RADIUS * 15,
+    CURVE_SEGMENTS,
+    CURVE_SEGMENTS
+  );
+  const map = textureLoader.load(
+    `${process.env.REACT_APP_API_BASE_URL}/api/textures/milkyway_4k.jpg`
+  );
   map.wrapS = THREE.RepeatWrapping;
   map.wrapT = THREE.RepeatWrapping;
   map.magFilter = THREE.NearestFilter;

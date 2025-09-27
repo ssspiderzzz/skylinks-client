@@ -1,9 +1,17 @@
 import * as THREE from "three";
 import { CURVE_SEGMENTS, GLOBE_RADIUS } from "../helpers/constants";
-import { DirectionalLightX, DirectionalLightY, DirectionalLightZ } from "../helpers/constants";
+import {
+  DirectionalLightX,
+  DirectionalLightY,
+  DirectionalLightZ,
+} from "../helpers/constants";
 
 const Sun = (scene, textureLoader) => {
-  const sphere = new THREE.SphereGeometry(GLOBE_RADIUS * 0.2, CURVE_SEGMENTS, CURVE_SEGMENTS);
+  const sphere = new THREE.SphereGeometry(
+    GLOBE_RADIUS * 0.2,
+    CURVE_SEGMENTS,
+    CURVE_SEGMENTS
+  );
 
   const material = new THREE.MeshBasicMaterial({
     color: 0xfdb813,
@@ -12,7 +20,9 @@ const Sun = (scene, textureLoader) => {
   const sun = new THREE.Mesh(sphere, material);
 
   var spriteMaterial = new THREE.SpriteMaterial({
-    map: textureLoader.load("https://skylinks.herokuapp.com/api/textures/glow.png"),
+    map: textureLoader.load(
+      `${process.env.REACT_APP_API_BASE_URL}/api/textures/glow.png`
+    ),
     color: 0xfdb813,
     transparent: false,
     blending: THREE.AdditiveBlending,

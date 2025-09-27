@@ -12,6 +12,8 @@ import { coordinateToPosition } from "./helpers/curve";
 import { TOTAL_ITEMS, LOADING_ITEMS_UPDATE, LOADING_STATUS_UPDATE } from "../store/reducer";
 import store from "../store";
 
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
 export default function SceneManager(canvas) {
   const clock = new THREE.Clock();
 
@@ -34,7 +36,7 @@ export default function SceneManager(canvas) {
 
   function Load3DPlane(scene) {
     const gltfLoader = new GLTFLoader(loadingManager);
-    gltfLoader.load("https://skylinks.herokuapp.com/with-cors/scene.gltf", (gltf) => {
+    gltfLoader.load(`${baseUrl}/with-cors/scene.gltf`, (gltf) => {
       gltf.scene.traverse(function (child) {
         if (child.isMesh) {
           child.name = "airPlaneParts";

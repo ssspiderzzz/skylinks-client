@@ -7,14 +7,20 @@ import {
 } from "../helpers/constants";
 
 const Earth = (scene, textureLoader) => {
-  const geometry_sphere = new THREE.SphereGeometry(GLOBE_RADIUS, CURVE_SEGMENTS, CURVE_SEGMENTS);
-  const mapTexture = textureLoader.load("https://skylinks.herokuapp.com/api/textures/earth.jpg");
+  const geometry_sphere = new THREE.SphereGeometry(
+    GLOBE_RADIUS,
+    CURVE_SEGMENTS,
+    CURVE_SEGMENTS
+  );
+  const mapTexture = textureLoader.load(
+    `${process.env.REACT_APP_API_BASE_URL}/api/textures/earth.jpg`
+  );
   const bumbMapTexture = textureLoader.load(
-    "https://skylinks.herokuapp.com/api/textures/elev_bump_4k.jpg"
+    `${process.env.REACT_APP_API_BASE_URL}/api/textures/elev_bump_4k.jpg`
   );
 
   const specularMap = textureLoader.load(
-    "https://skylinks.herokuapp.com/api/textures/water_4k.png"
+    `${process.env.REACT_APP_API_BASE_URL}/api/textures/water_4k.png`
   );
 
   const material = new THREE.MeshPhongMaterial({
