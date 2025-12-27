@@ -8,7 +8,7 @@ const RealTimePlanes = (points) => {
   // let dir = new THREE.Vector3();
   // dir.subVectors(points[0], points[points.length - 1]).normalize();
 
-  let geo = new THREE.PlaneBufferGeometry(1, 1, 1);
+  let geo = new THREE.PlaneGeometry(1, 1, 1);
   let mat = new THREE.MeshBasicMaterial({
     map: textureLoader.load(
       `${process.env.REACT_APP_API_BASE_URL}/api/textures/plane.png`

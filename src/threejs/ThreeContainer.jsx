@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ThreeEntryPoint from "./ThreeEntryPoint";
 
 export default function ThreeContainer(props) {
@@ -14,7 +14,7 @@ export default function ThreeContainer(props) {
     if (props.realFlightPosition && props.waypoints.length > 0) {
       state.updatePosition(props.realFlightPosition, props.waypoints);
     }
-  }, [props.realFlightPosition, props.waypoints]);
+  }, [state,props.realFlightPosition, props.waypoints]);
 
   if (state) {
     state.clear();

@@ -116,7 +116,7 @@ export default function SceneManager(canvas) {
       console.log("Loading complete!");
       setTimeout(() => {
         store.dispatch({ type: LOADING_STATUS_UPDATE, loadingCompleted: true });
-      }, 3000);
+      }, 2000);
     };
     return manager;
   }

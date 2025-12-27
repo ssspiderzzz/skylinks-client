@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { SRGBColorSpace, NoColorSpace } from 'three';
 import {
   CURVE_SEGMENTS,
   GLOBE_RADIUS,
@@ -22,6 +23,19 @@ const Earth = (scene, textureLoader) => {
   const specularMap = textureLoader.load(
     `${process.env.REACT_APP_API_BASE_URL}/api/textures/water_4k.png`
   );
+
+  mapTexture.colorSpace = SRGBColorSpace;
+  mapTexture.needsUpdate = true;
+
+  if (bumbMapTexture) {
+    bumbMapTexture.colorSpace = NoColorSpace;
+    bumbMapTexture.needsUpdate = true;
+  }
+
+  if (specularMap) {
+    specularMap.colorSpace = SRGBColorSpace; 
+    specularMap.needsUpdate = true;
+  }
 
   const material = new THREE.MeshPhongMaterial({
     map: mapTexture,

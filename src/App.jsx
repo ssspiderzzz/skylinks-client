@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import "antd/dist/antd.css";
 import "./App.css";
@@ -19,59 +19,53 @@ const App = () => {
   const [waypoints, setWaypoints] = useState([]);
   const [realFlightPosition, setRealFlightPosition] = useState(0);
 
-  useEffect(() => {
-    fetchData();
+  const fetchData = useCallback(async () => {
+    if (!departureFs) return;
+    try {
+      const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/airports/${departureFs}`);
+      if (data) {
+        setDepartureAirport(data.departure);
+        setArrivalAirport(data.arrival);
+      }
+    } catch (error) {
+      console.error("Failed to fetch airport data:", error);
+    }
   }, [departureFs]);
 
+  const fetchFlightSchedule = useCallback(async () => {
+    if (departureAirport?.fs && arrivalAirport?.length === 1) {
+      try {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_BASE_URL}/api/schedules/from/${departureAirport.fs}/to/${arrivalAirport[0].fs}`
+        );
+        setSchedule(data || "");
+      } catch (error) {
+        console.error("Failed to fetch schedule:", error);
+      }
+    }
+  }, [departureAirport, arrivalAirport]);
+
+  const fetchWaypoints = useCallback(async () => {
+    if (departureFs && arrivalFs) {
+      try {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_BASE_URL}/api/real/from/${departureFs}/to/${arrivalFs}`
+        );
+        setWaypoints(data || []);
+      } catch (error) {
+        console.error("Failed to fetch waypoints:", error);
+      }
+    }
+  }, [departureFs, arrivalFs]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+  
   useEffect(() => {
     fetchFlightSchedule();
     fetchWaypoints();
-  }, [arrivalFs]);
-
-  const fetchData = () => {
-    if (departureFs)
-      axios
-        .get(
-          `${process.env.REACT_APP_API_BASE_URL}/api/airports/${departureFs}`
-        )
-        .then((response) => {
-          if (response.data) {
-            setDepartureAirport(response.data.departure);
-            setArrivalAirport(response.data.arrival);
-          }
-        });
-  };
-
-  const fetchFlightSchedule = () => {
-    if (arrivalAirport.length === 1)
-      axios
-        .get(
-          `${process.env.REACT_APP_API_BASE_URL}/api/schedules/from/${departureAirport.fs}/to/${arrivalAirport[0].fs}`
-        )
-        .then((response) => {
-          if (response.data) {
-            setSchedule(response.data);
-          }
-        });
-  };
-
-  const fetchWaypoints = () => {
-    let departure = "";
-    let arrival = "";
-    if (departureFs && arrivalFs) {
-      departure = departureFs;
-      arrival = arrivalFs;
-      axios
-        .get(
-          `${process.env.REACT_APP_API_BASE_URL}/api/real/from/${departure}/to/${arrival}`
-        )
-        .then((response) => {
-          if (response.data) {
-            setWaypoints(response.data);
-          }
-        });
-    }
-  };
+  }, [arrivalFs, fetchFlightSchedule, fetchWaypoints]);
 
   const arrivals = () => {};
 

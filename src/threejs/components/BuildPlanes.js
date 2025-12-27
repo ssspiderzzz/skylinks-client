@@ -8,7 +8,7 @@ const BuildPlanes = (spline) => {
 
   var textureLoader = new THREE.TextureLoader();
 
-  let geo = new THREE.PlaneBufferGeometry(0.2, 0.2, 0.2);
+  let geo = new THREE.PlaneGeometry(0.2, 0.2, 0.2);
   let mat = new THREE.MeshBasicMaterial({
     map: textureLoader.load(
       `${process.env.REACT_APP_API_BASE_URL}/api/textures/plane.png`
