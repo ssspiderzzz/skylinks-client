@@ -96,7 +96,7 @@ export default function SceneManager(canvas) {
     const farPlane = 10000;
     const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
-    camera.position.z = 10;
+    camera.position.z = 12;
     return camera;
   }
 

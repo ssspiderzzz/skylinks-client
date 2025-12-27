@@ -10,6 +10,7 @@ const Stars = (scene, textureLoader) => {
   const map = textureLoader.load(
     `${process.env.REACT_APP_API_BASE_URL}/api/textures/milkyway_4k.jpg`
   );
+  map.colorSpace = THREE.SRGBColorSpace;
   map.wrapS = THREE.RepeatWrapping;
   map.wrapT = THREE.RepeatWrapping;
   map.magFilter = THREE.NearestFilter;
@@ -17,6 +18,9 @@ const Stars = (scene, textureLoader) => {
   const material = new THREE.MeshBasicMaterial({
     map: map,
     side: THREE.BackSide,
+    color: 0x888888,
+    depthWrite: false, // Prevents depth-sorting issues with the skybox
+    toneMapped: false  // Keeps the colors consistent
   });
   const background = new THREE.Mesh(sphere, material);
   background.name = "background";
