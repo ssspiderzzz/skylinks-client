@@ -8,16 +8,19 @@ const BuildPlanes = (spline) => {
 
   var textureLoader = new THREE.TextureLoader();
 
-  let geo = new THREE.PlaneGeometry(0.2, 0.2, 0.2);
+  let geo = new THREE.PlaneGeometry(0.2, 0.2); 
+
+  let planeTexture = textureLoader.load(`${process.env.REACT_APP_API_BASE_URL}/api/textures/plane.png`);
+  planeTexture.colorSpace = THREE.SRGBColorSpace;
+
   let mat = new THREE.MeshBasicMaterial({
-    map: textureLoader.load(
-      `${process.env.REACT_APP_API_BASE_URL}/api/textures/plane.png`
-    ),
+    map: planeTexture,
     transparent: true,
     side: THREE.DoubleSide,
+    alphaTest: 0.5,
   });
-  let plane = new THREE.Mesh(geo, mat);
 
+  let plane = new THREE.Mesh(geo, mat);
   const ranForAirPlane = Math.floor(Math.random() * 5000);
   setTimeout(() => {
     setInterval(moveontrack, 100);
