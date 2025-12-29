@@ -14,7 +14,7 @@ const RealTimeFlightRoutes = (scene, waypoints) => {
         const lat = parseFloat(pos.position.latitude);
         const long = parseFloat(pos.position.longitude);
         const alt = parseFloat(pos.position.altitude);
-        const position_Vector3 = coordinateToPosition(lat, long, 5 + alt * (5 / 20902000) * 30);
+        const position_Vector3 = coordinateToPosition(lat, long, 5 + alt * (5 / 20902000) * 50);
         points.push(position_Vector3);
       }
       const curve_geometry = new THREE.BufferGeometry().setFromPoints(points);
