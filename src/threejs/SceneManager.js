@@ -8,7 +8,7 @@ import FlightRealRoutes from "./components/RealTimeFlightRoutes";
 import GeneralLights from "./components/GeneralLights";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { coordinateToPosition } from "./helpers/curve";
+// import { coordinateToPosition } from "./helpers/curve";
 import { TOTAL_ITEMS, LOADING_ITEMS_UPDATE, LOADING_STATUS_UPDATE } from "../store/reducer";
 import store from "../store";
 
