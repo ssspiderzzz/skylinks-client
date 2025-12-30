@@ -15,6 +15,7 @@ import store from "../store";
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export default function SceneManager(canvas) {
+  
   const clock = new THREE.Clock();
 
   const screenDimensions = {
@@ -199,6 +200,9 @@ export default function SceneManager(canvas) {
   }
 
   function update() {
+    // GUARD: If assets aren't ready, do not try to render
+    if (!LOADING_STATUS_UPDATE.loadingCompleted) return;
+
     if (!airPlaneRoot) {
       airPlaneRoot = scene.getObjectByName("real3d");
     }
@@ -276,22 +280,45 @@ export default function SceneManager(canvas) {
       airPlaneRoot.points = plane.points;
       const index = airPlaneRoot.points.length - 2;
       const current = Math.floor((position / 100) * index);
-      airPlaneRoot.up = new THREE.Vector3(0, 1, 0);
-      const endPosition = coordinateToPosition(
-        waypoints[waypoints.length - 1].position.latitude,
-        waypoints[waypoints.length - 1].position.longitude,
-        5
-      );
-      console.log(endPosition);
-      airPlaneRoot.position.lerp(airPlaneRoot.points[current], 1);
+      const currentPos = airPlaneRoot.points[current];
+      const nextPos = airPlaneRoot.points[current + 1];
 
-      airPlaneRoot.lookAt(airPlaneRoot.points[current + 1]);
-      airPlaneRoot.rotation.z = -(Math.PI / 180) * 320;
-    } else if (plane) {
-      const index = plane.points.length - 1;
-      const current = Math.floor((position / 100) * index);
-      plane.position.lerp(plane.points[current], 1);
-      plane.rotation.z = (Math.PI / 180) * waypoints[current].position.direction;
+      if (currentPos && nextPos) {
+          airPlaneRoot.position.copy(currentPos);
+
+          const direction = new THREE.Vector3().subVectors(nextPos, currentPos).normalize();
+          
+          const normal = currentPos.clone().normalize();
+
+          const right = new THREE.Vector3().crossVectors(normal, direction).normalize();
+
+          const alignedDirection = new THREE.Vector3().crossVectors(right, normal).normalize();
+
+          const matrix = new THREE.Matrix4();
+          matrix.makeBasis(right, normal, alignedDirection.multiplyScalar(-1)); // 根据模型轴向调整
+          airPlaneRoot.quaternion.setFromRotationMatrix(matrix);
+        
+          airPlaneRoot.rotateX(Math.PI / 2); 
+      }
+
+    //   const index = airPlaneRoot.points.length - 2;
+    //   const current = Math.floor((position / 100) * index);
+    //   airPlaneRoot.up = new THREE.Vector3(0, 1, 0);
+    //   const endPosition = coordinateToPosition(
+    //     waypoints[waypoints.length - 1].position.latitude,
+    //     waypoints[waypoints.length - 1].position.longitude,
+    //     5
+    //   );
+    //   console.log(endPosition);
+    //   airPlaneRoot.position.lerp(airPlaneRoot.points[current], 1);
+
+    //   airPlaneRoot.lookAt(airPlaneRoot.points[current + 1]);
+    //   airPlaneRoot.rotation.z = -(Math.PI / 180) * 320;
+    // } else if (plane) {
+    //   const index = plane.points.length - 1;
+    //   const current = Math.floor((position / 100) * index);
+    //   plane.position.lerp(plane.points[current], 1);
+    //   plane.rotation.z = (Math.PI / 180) * waypoints[current].position.direction;
       // axis.crossVectors(up, plane.points[current]).normalize();
       // plane.quaternion.setFromAxisAngle(
       //   new THREE.Vector3(0, 1, 0),

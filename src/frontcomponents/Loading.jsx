@@ -17,7 +17,7 @@ export default function Loading(props) {
     <React.Fragment>
       <div style={{ opacity: loadingOpacity, visibility: loadingVisibility }} className="loading">
         <p className="loadingLineOne">
-          Welcome to
+          Welcome to 
           <span className="loadingSkylinks">Skylinks</span>
         </p>
         <p className="loadingLineTwo">Thank you for your patience</p>
