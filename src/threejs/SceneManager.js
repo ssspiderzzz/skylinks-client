@@ -200,10 +200,8 @@ export default function SceneManager(canvas) {
   }
 
   function update() {
-    const { loadingCompleted } = store.getState().LOADING_STATUS_UPDATE;
-    
     // GUARD: If assets aren't ready, do not try to render
-    if (!loadingCompleted) return;
+    if (!store.getState().loadingCompleted) return;
 
     if (!airPlaneRoot) {
       airPlaneRoot = scene.getObjectByName("real3d");
