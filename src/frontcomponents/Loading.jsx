@@ -15,14 +15,14 @@ export default function Loading(props) {
   const loadingOpacity = loadingStatus.loadingCompleted ? (launch ? 0 : 0.8) : 1;
   return (
     <React.Fragment>
-      <div style={{ opacity: loadingOpacity, visibility: loadingVisibility }} className="loading">
+      <div style={{ opacity: loadingOpacity, visibility: loadingVisibility }} className="loading welcomeFont">
         <p className="loadingLineOne">
-          Welcome to 
-          <span className="loadingSkylinks">Skylinks</span>
+            Thank you for choosing 
+            <span className="loadingSkylinks">-Skylinks-</span>
         </p>
-        <p className="loadingLineTwo">Thank you for your patience</p>
-        <p className="loadingLineThree">We are preparing for take-off</p>
-
+        <p className="loadingLineTwo">Please remain seated while we wake up our cloud enginest</p>
+        <p className="loadingLineTwo">It takes about 30 seconds to launch</p>
+        <p className="loadingLineThree">Thank you for your patience. And enjoy your flight!</p>
         {!loadingStatus.loadingCompleted && (
           <>
             <img className="loadingGif" src={loadingGif} alt="loadingGif" />

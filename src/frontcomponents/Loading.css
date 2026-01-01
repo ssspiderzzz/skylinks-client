@@ -1,3 +1,7 @@
+.welcomeFont {
+  font-family: 'Courier New', monospace
+}
+
 .loading {
   display: flex;
   align-items: center;
